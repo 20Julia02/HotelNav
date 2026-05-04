@@ -60,4 +60,6 @@ dependencies {
     implementation(libs.zxing.android.embedded)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.osmdroid.android)
+    implementation(libs.proj4j)
 }

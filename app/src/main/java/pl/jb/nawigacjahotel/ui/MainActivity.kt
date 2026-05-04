@@ -3,6 +3,7 @@ package pl.jb.nawigacjahotel.ui
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import pl.jb.nawigacjahotel.ui.theme.NawigacjaHotelTheme
 import pl.jb.nawigacjahotel.common.ResultState
+import pl.jb.nawigacjahotel.data.model.CoordinateConverter
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 
 class MainActivity : ComponentActivity() {
 
@@ -34,6 +38,7 @@ class MainActivity : ComponentActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Configuration.getInstance().userAgentValue = packageName
         enableEdgeToEdge()
 
         setContent {
@@ -63,8 +68,13 @@ fun MainScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Button(onClick = { onScanClick() }) {
-            Text("Skanuj QR")
+        Button(
+            onClick = onScanClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text("Skanuj kod QR")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -76,8 +86,15 @@ fun MainScreen(
             }
 
             is ResultState.Success -> {
-                Text("Współrzędne:")
-                Text(text = currentState.data)
+                val coords = currentState.data // To już są gotowe lat/lon
+
+                Log.d("konwert", "Wyświetlam mapę dla: Lat=${coords.x}, Lon=${coords.y}")
+
+                OsmMapView(
+                    lat = coords.x, // lat
+                    lon = coords.y, // lon
+                    modifier = Modifier.fillMaxWidth().height(300.dp)
+                )
             }
 
             is ResultState.Error -> {
