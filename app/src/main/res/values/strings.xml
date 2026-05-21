@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NawigacjaHotel</string>
+    <string name="arc_gis_license">runtimelite,1000,rud3084639497,none,6PB3LNBHPFJPA1GJH148</string>
+    <string name="maps_api_key" translatable="false">AAPKd7ba0f57475a4ac38a57b649bc5171feUIkt2m3Per1ZdEn-vGRR2XfQRprl-hVuq45ADvgH0A67E-3oVSQg1KdDtfL_rvwU</string>
 </resources>

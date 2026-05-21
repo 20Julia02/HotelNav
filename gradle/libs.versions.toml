@@ -1,5 +1,7 @@
 [versions]
 agp = "9.1.0"
+arcgisAndroid = "200.4.0"
+arcgisAndroidVersion = "100.15.6"
 converterGson = "2.9.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
@@ -17,6 +19,8 @@ zxingAndroidEmbedded = "4.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+arcgis-android = { module = "com.esri.arcgisruntime:arcgis-android", version.ref = "arcgisAndroid" }
+arcgis-android-v100156 = { module = "com.esri.arcgisruntime:arcgis-android", version.ref = "arcgisAndroidVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

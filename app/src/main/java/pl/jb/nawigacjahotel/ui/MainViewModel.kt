@@ -25,7 +25,6 @@ class MainViewModel : ViewModel() {
         getLocationFromQr(lastPart)
     }
 
-    // W MainViewModel
     private fun getLocationFromQr(qr: String) {
         viewModelScope.launch {
             _locationState.value = ResultState.Loading
@@ -34,10 +33,15 @@ class MainViewModel : ViewModel() {
                 val geometry = response.features.firstOrNull()?.geometry
 
                 if (geometry != null) {
-                    // Wykonaj konwersję TUTAJ, wewnątrz Coroutine
                     val (lat, lon) = converter.toWgs84(geometry.y, geometry.x)
-                    // Przekazuj już gotowe współrzędne
-                    _locationState.value = ResultState.Success(LocationCoords(lat, lon))
+
+                    _locationState.value =
+                        ResultState.Success(
+                            LocationCoords(
+                                x = lon,
+                                y = lat
+                            )
+                        )
                 } else {
                     _locationState.value = ResultState.Error(Exception("Brak danych"))
                 }
