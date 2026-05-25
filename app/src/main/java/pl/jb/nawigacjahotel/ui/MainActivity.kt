@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,9 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
+
 import androidx.compose.ui.unit.sp
 import pl.jb.nawigacjahotel.ui.theme.NawigacjaHotelTheme
 import pl.jb.nawigacjahotel.common.ResultState
+import pl.jb.nawigacjahotel.ui.theme.NawigacjaHotelTheme
 import pl.jb.nawigacjahotel.data.model.CoordinateConverter
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -34,16 +38,21 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel = MainViewModel()
 
-    private val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
-        if (result.contents != null) {
-            viewModel.onQrScanned(result.contents)
+    private val barcodeLauncher =
+        registerForActivityResult(ScanContract()) { result ->
+
+            if (result.contents != null) {
+                viewModel.onQrScanned(result.contents)
+            }
         }
-    }
+
     private fun startScan() {
-        val options = ScanOptions()
-        options.setPrompt("Zeskanuj kod QR")
-        options.setBeepEnabled(true)
-        options.setOrientationLocked(true)
+
+        val options = ScanOptions().apply {
+            setPrompt("Zeskanuj kod QR")
+            setBeepEnabled(true)
+            setOrientationLocked(true)
+        }
 
         barcodeLauncher.launch(options)
     }
@@ -100,138 +109,144 @@ fun MainScreen(
                 is ResultState.Loading -> {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
+
                 is ResultState.Success -> {
                     val coords = currentState.data
 
-                    OsmMapView(
-                        lat = coords.x,
-                        lon = coords.y,
-                        isUserPosition = coords.isUserPosition, // <--- Przekazujemy flagę
-                        modifier = Modifier.fillMaxSize()
+                    EsriMapView(
+                        lat = coords.y,
+                        lon = coords.x,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(400.dp)
                     )
                 }
+
                 is ResultState.Error -> {
+
                     Text(
-                        text = "Błąd: ${currentState.throwable.message}",
-                        modifier = Modifier.align(Alignment.Center),
-                        color = MaterialTheme.colorScheme.error
+                        text = "Błąd: ${currentState.throwable.message}"
                     )
                 }
             }
-        }
 
-        // WARSTWA 2: INTERFEJS WISZĄCY NAD MAPĄ
-        // Używamy Column z wyrównaniem do góry (TopCenter)
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .statusBarsPadding() // Zapobiega wchodzeniu na pasek stanu telefonu (baterię, zegarek)
-                .align(Alignment.TopCenter)
-        ) {
-            // Tytuł aplikacji
-            Text(
-                text = "Hotel Navigator",
-                style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.Bold
-                ),
+            // WARSTWA 2: INTERFEJS WISZĄCY NAD MAPĄ
+            // Używamy Column z wyrównaniem do góry (TopCenter)
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 16.dp, start = 16.dp, end = 16.dp),
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                color = Color.Black // Warto wymusić kolor, by był widoczny na mapie
-            )
-
-            // Wyszukiwarka i QR kod obok siebie
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    .statusBarsPadding() // Zapobiega wchodzeniu na pasek stanu telefonu (baterię, zegarek)
+                    .align(Alignment.TopCenter)
             ) {
-                // Pasek wyszukiwania
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = {
-                        searchQuery = it
-                        isSuggestionsVisible = it.isNotEmpty()
-                    },
-                    placeholder = { Text("Wyszukaj miejsce (np. Restauracja, Basen)...", fontSize = 14.sp) },
-                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color.White,
-                        unfocusedContainerColor = Color.White,
-                        focusedBorderColor = Color.LightGray,
-                        unfocusedBorderColor = Color.LightGray
+                // Tytuł aplikacji
+                Text(
+                    text = "Hotel Navigator",
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontWeight = FontWeight.Bold
                     ),
-                    singleLine = true
-                )
-
-                // Przycisk QR (Biała karta z cieniem)
-                Card(
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp), // Zwiększony cień, by bardziej "wisiał"
-                    modifier = Modifier.size(54.dp)
-                ) {
-                    IconButton(
-                        onClick = onScanClick,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.qrcodescanicon),
-                                contentDescription = "Skanuj QR",
-                                modifier = Modifier.size(24.dp),
-                                tint = Color.Unspecified
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "SKANUJ QR",
-                                fontSize = 7.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
-                        }
-                    }
-                }
-            }
-
-            // Rozwijana lista sugestii
-            if (isSuggestionsVisible && filteredSuggestions.isNotEmpty()) {
-                Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .padding(bottom = 8.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 6.dp) // Większy cień pod listą
+                        .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    color = Color.Black // Warto wymusić kolor, by był widoczny na mapie
+                )
+
+                // Wyszukiwarka i QR kod obok siebie
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                        items(filteredSuggestions) { suggestion ->
+                    // Pasek wyszukiwania
+                    OutlinedTextField(
+                        value = searchQuery,
+                        onValueChange = {
+                            searchQuery = it
+                            isSuggestionsVisible = it.isNotEmpty()
+                        },
+                        placeholder = {
                             Text(
-                                text = suggestion,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable {
-                                        searchQuery = suggestion
-                                        isSuggestionsVisible = false
-                                    }
-                                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                                color = Color.Black,
+                                "Wyszukaj miejsce (np. Restauracja, Basen)...",
                                 fontSize = 14.sp
                             )
-                            HorizontalDivider(color = Color(0xFFF0F0F0))
+                        },
+                        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            focusedBorderColor = Color.LightGray,
+                            unfocusedBorderColor = Color.LightGray
+                        ),
+                        singleLine = true
+                    )
+
+                    // Przycisk QR (Biała karta z cieniem)
+                    Card(
+                        shape = RoundedCornerShape(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp), // Zwiększony cień, by bardziej "wisiał"
+                        modifier = Modifier.size(54.dp)
+                    ) {
+                        IconButton(
+                            onClick = onScanClick,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.qrcodescanicon),
+                                    contentDescription = "Skanuj QR",
+                                    modifier = Modifier.size(24.dp),
+                                    tint = Color.Unspecified
+                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = "SKANUJ QR",
+                                    fontSize = 7.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Rozwijana lista sugestii
+                if (isSuggestionsVisible && filteredSuggestions.isNotEmpty()) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .padding(bottom = 8.dp),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp) // Większy cień pod listą
+                    ) {
+                        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                            items(filteredSuggestions) { suggestion ->
+                                Text(
+                                    text = suggestion,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            searchQuery = suggestion
+                                            isSuggestionsVisible = false
+                                        }
+                                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                                    color = Color.Black,
+                                    fontSize = 14.sp
+                                )
+                                HorizontalDivider(color = Color(0xFFF0F0F0))
+                            }
                         }
                     }
                 }
             }
         }
-    }
-}
+    }}

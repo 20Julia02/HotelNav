@@ -2,66 +2,76 @@ package pl.jb.nawigacjahotel.ui
 
 import android.view.View
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
-import org.osmdroid.api.IMapController
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.Marker
-import org.osmdroid.util.GeoPoint
+import com.esri.arcgisruntime.geometry.Point
+import com.esri.arcgisruntime.geometry.SpatialReferences
+import com.esri.arcgisruntime.mapping.ArcGISMap
+import com.esri.arcgisruntime.mapping.BasemapStyle
+import com.esri.arcgisruntime.mapping.Viewpoint
+import com.esri.arcgisruntime.mapping.view.Graphic
+import com.esri.arcgisruntime.mapping.view.GraphicsOverlay
+import com.esri.arcgisruntime.mapping.view.MapView
+import com.esri.arcgisruntime.symbology.SimpleMarkerSymbol
+import androidx.compose.material3.MaterialTheme
 
 @Composable
-fun OsmMapView(
+fun EsriMapView(
     lat: Double,
     lon: Double,
-    isUserPosition: Boolean,
     modifier: Modifier = Modifier
 ) {
-    AndroidView(
-        modifier = modifier,
-        factory = { context ->
-            val mapView = MapView(context)
+    val context = LocalContext.current
 
-            mapView.setTileSource(TileSourceFactory.MAPNIK)
-            mapView.setMultiTouchControls(true)
+    // Pobieramy kolor z motywu Compose (np. Primary), żeby znacznik pasował do wyglądu aplikacji
+    val markerColor = MaterialTheme.colorScheme.primary.toArgb()
 
-            mapView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+    // Tworzymy nakładkę na grafiki, która będzie trzymać nasz punkt
+    val graphicsOverlay = remember { GraphicsOverlay() }
 
-            mapView.isTilesScaledToDpi = true
-
-            mapView.tileProvider.tileCache.ensureCapacity(64)
-
-            mapView.setHasTransientState(true)
-
-            mapView
-        },
-        // ... (reszta kodu factory bez zmian)
-        update = { mapView ->
-            val point = GeoPoint(lat, lon)
-            val mapController: IMapController = mapView.controller
-
-            // Centrowanie i zoom działają zawsze, żeby użytkownik widział hotel na starcie
-            val currentCenter = mapView.mapCenter
-            if (currentCenter.latitude != point.latitude || currentCenter.longitude != point.longitude) {
-                mapController.setZoom(17)
-                mapController.animateTo(point)
-            }
-
-            // Czyszczenie starych nakładek (overlayów)
-            mapView.overlays.clear()
-
-            // WARUNEK: Rysuj pinezkę TYLKO wtedy, gdy to faktyczna pozycja użytkownika (po QR)
-            if (isUserPosition) {
-                val marker = Marker(mapView)
-                marker.position = point
-                // marker.icon = ContextCompat.getDrawable(mapView.context, R.drawable.my_blue_dot)
-                marker.title = "Twoja pozycja"
-
-                mapView.overlays.add(marker)
-            }
-
-            // Odświeżenie widoku mapy
-            mapView.invalidate()
+    val mapView = remember {
+        MapView(context).apply {
+            val map = ArcGISMap(BasemapStyle.ARCGIS_STREETS)
+            this.map = map
+            // Dodajemy nakładkę do widoku mapy
+            this.graphicsOverlays.add(graphicsOverlay)
         }
+    }
+
+    // Reagujemy na zmianę lat/lon (np. po ponownym skanowaniu)
+    LaunchedEffect(lat, lon) {
+        // Czyszczenie poprzedniego punktu (jeśli był)
+        graphicsOverlay.graphics.clear()
+
+        // Tworzenie punktu geograficznego
+        val point = Point(lon, lat, SpatialReferences.getWgs84())
+
+        // Definiowanie wyglądu znacznika (Czerwona/Primary kropka o rozmiarze 14dp)
+        val symbol = SimpleMarkerSymbol(SimpleMarkerSymbol.Style.CIRCLE, markerColor, 14f)
+
+        // Tworzenie obiektu graficznego łączącego geometrię i wygląd
+        val pinGraphic = Graphic(point, symbol)
+
+        // Dodanie punktu na mapę
+        graphicsOverlay.graphics.add(pinGraphic)
+
+        // Centrowanie mapy na nowej pozycji
+        mapView.setViewpointAsync(Viewpoint(point, 5000.0), 1f)
+    }
+
+    DisposableEffect(Unit) {
+        mapView.resume()
+        onDispose {
+            mapView.pause()
+            mapView.dispose()
+        }
+    }
+
+    AndroidView(
+        factory = { mapView },
+        modifier = modifier
     )
 }

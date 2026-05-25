@@ -38,10 +38,10 @@ class MainViewModel : ViewModel() {
         getLocationFromQr(lastPart)
     }
 
+    // W MainViewModel
     private fun getLocationFromQr(qr: String) {
         viewModelScope.launch {
-            // Podczas ładowania z QR nie musimy pokazywać całoekranowego Loading,
-            // ale jeśli chcesz, możesz to zostawić. Bezpieczniej usunąć, by mapa nie znikała.
+            _locationState.value = ResultState.Loading
             try {
                 val response = RetrofitInstance.api.getLocation(where = "qr_text='$qr'")
                 val geometry = response.features.firstOrNull()?.geometry
