@@ -62,4 +62,5 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.osmdroid.android)
     implementation(libs.proj4j)
+    implementation(libs.android.sdk)
 }

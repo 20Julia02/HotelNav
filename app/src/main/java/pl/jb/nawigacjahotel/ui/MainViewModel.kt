@@ -13,11 +13,24 @@ import pl.jb.nawigacjahotel.data.model.CoordinateConverter
 
 class MainViewModel : ViewModel() {
     private val converter = CoordinateConverter()
+
     companion object {
         private const val TAG = "MainViewModel"
+        private const val DEFAULT_LAT = 52.2207
+        private const val DEFAULT_LON = 21.0100
     }
-    data class LocationCoords(val x: Double, val y: Double)
-    private val _locationState = MutableStateFlow<ResultState<LocationCoords>>(ResultState.Loading)
+
+    // Dodajemy flagę isUserPosition, żeby odróżnić widok hotelu od pozycji usera
+    data class LocationCoords(
+        val x: Double,
+        val y: Double,
+        val isUserPosition: Boolean = false
+    )
+
+    // STARTUJEMY OD RAZU Z SUKCESEM (Domyślny widok hotelu)
+    private val _locationState = MutableStateFlow<ResultState<LocationCoords>>(
+        ResultState.Success(LocationCoords(DEFAULT_LAT, DEFAULT_LON, isUserPosition = false))
+    )
     val locationState: StateFlow<ResultState<LocationCoords>> = _locationState
 
     fun onQrScanned(result: String) {
@@ -25,21 +38,20 @@ class MainViewModel : ViewModel() {
         getLocationFromQr(lastPart)
     }
 
-    // W MainViewModel
     private fun getLocationFromQr(qr: String) {
         viewModelScope.launch {
-            _locationState.value = ResultState.Loading
+            // Podczas ładowania z QR nie musimy pokazywać całoekranowego Loading,
+            // ale jeśli chcesz, możesz to zostawić. Bezpieczniej usunąć, by mapa nie znikała.
             try {
                 val response = RetrofitInstance.api.getLocation(where = "qr_text='$qr'")
                 val geometry = response.features.firstOrNull()?.geometry
 
                 if (geometry != null) {
-                    // Wykonaj konwersję TUTAJ, wewnątrz Coroutine
                     val (lat, lon) = converter.toWgs84(geometry.y, geometry.x)
-                    // Przekazuj już gotowe współrzędne
-                    _locationState.value = ResultState.Success(LocationCoords(lat, lon))
+                    // Zwracamy pozycję z flagą isUserPosition = true
+                    _locationState.value = ResultState.Success(LocationCoords(lat, lon, isUserPosition = true))
                 } else {
-                    _locationState.value = ResultState.Error(Exception("Brak danych"))
+                    _locationState.value = ResultState.Error(Exception("Nie znaleziono pozycji dla tego kodu QR"))
                 }
             } catch (e: Exception) {
                 _locationState.value = ResultState.Error(e)
