@@ -3,8 +3,12 @@ agp = "9.1.0"
 androidSdk = "13.1.0"
 arcgisAndroid = "200.4.0"
 arcgisAndroidVersion = "100.15.6"
+arcgisJava = "100.15.0"
+arcgisMapsKotlinToolkitGeoview = "200.4.0"
+arcgisMapsKotlinToolkit = "200.4.0"
+arcgisMapsKotlinToolkitGeoviewcompose = "200.4.0"
+arcgisMapsKotlinVersion = "200.4.0"
 converterGson = "2.9.0"
-coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -17,12 +21,19 @@ proj4j = "1.4.1"
 retrofit = "2.9.0"
 serializationJson = "1.10.0"
 zxingAndroidEmbedded = "4.3.0"
+arcgisMapsKotlin = "300.0.0"
+coreKtx = "1.17.0"
 
 [libraries]
 android-sdk = { module = "org.maplibre.gl:android-sdk", version.ref = "androidSdk" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 arcgis-android = { module = "com.esri.arcgisruntime:arcgis-android", version.ref = "arcgisAndroid" }
 arcgis-android-v100156 = { module = "com.esri.arcgisruntime:arcgis-android", version.ref = "arcgisAndroidVersion" }
+arcgis-java = { module = "com.esri.arcgisruntime:arcgis-java", version.ref = "arcgisJava" }
+arcgis-maps-kotlin-toolkit = { module = "com.arcgismaps:arcgis-maps-kotlin-toolkit", version.ref = "arcgisMapsKotlinToolkit" }
+arcgis-maps-kotlin-toolkit-geoview = { module = "com.esri:arcgis-maps-kotlin-toolkit-geoview", version.ref = "arcgisMapsKotlinToolkitGeoview" }
+arcgis-maps-kotlin-toolkit-geoviewcompose = { module = "com.esri:arcgis-maps-kotlin-toolkit-geoviewcompose", version.ref = "arcgisMapsKotlinToolkitGeoviewcompose" }
+arcgismaps-arcgis-maps-kotlin = { module = "com.arcgismaps:arcgis-maps-kotlin", version.ref = "arcgisMapsKotlinVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -42,6 +53,10 @@ osmdroid-android = { module = "org.osmdroid:osmdroid-android", version.ref = "os
 proj4j = { module = "org.locationtech.proj4j:proj4j", version.ref = "proj4j" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
+arcgis-maps-kotlin = { group = "com.esri", name = "arcgis-maps-kotlin", version.ref = "arcgisMapsKotlin" }
+arcgis-maps-kotlin-toolkit-bom = { group = "com.esri", name = "arcgis-maps-kotlin-toolkit-bom", version.ref = "arcgisMapsKotlin" }
+arcgis-maps-kotlin-toolkit-geoview-compose = { group = "com.esri", name = "arcgis-maps-kotlin-toolkit-geoview-compose" }
+arcgis-maps-kotlin-toolkit-authentication = { group = "com.esri", name = "arcgis-maps-kotlin-toolkit-authentication" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

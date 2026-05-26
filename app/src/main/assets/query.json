@@ -1,0 +1,3060 @@
+{
+ "displayFieldName": "qr_text",
+ "fieldAliases": {
+  "id": "id",
+  "qr_id": "qr_id",
+  "qr_text": "qr_text",
+  "building_id": "building_id",
+  "poziom": "poziom",
+  "floor_id": "floor_id"
+ },
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkt": "PROJCS[\"ETRF2000-PL_CS92\",GEOGCS[\"ETRF2000-PL\",DATUM[\"ETRF2000_Poland\",SPHEROID[\"GRS_1980\",6378137.0,298.257222101]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"False_Easting\",500000.0],PARAMETER[\"False_Northing\",-5300000.0],PARAMETER[\"Central_Meridian\",19.0],PARAMETER[\"Scale_Factor\",0.9993],PARAMETER[\"Latitude_Of_Origin\",0.0],UNIT[\"Meter\",1.0]]"
+ },
+ "fields": [
+  {
+   "name": "id",
+   "type": "esriFieldTypeOID",
+   "alias": "id"
+  },
+  {
+   "name": "qr_id",
+   "type": "esriFieldTypeInteger",
+   "alias": "qr_id"
+  },
+  {
+   "name": "qr_text",
+   "type": "esriFieldTypeString",
+   "alias": "qr_text",
+   "length": 255
+  },
+  {
+   "name": "building_id",
+   "type": "esriFieldTypeInteger",
+   "alias": "building_id"
+  },
+  {
+   "name": "poziom",
+   "type": "esriFieldTypeInteger",
+   "alias": "poziom"
+  },
+  {
+   "name": "floor_id",
+   "type": "esriFieldTypeInteger",
+   "alias": "floor_id"
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "id": 183,
+    "qr_id": null,
+    "qr_text": "XSHqE",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637317.88609999977,
+    "y": 485738.49139999971
+   }
+  },
+  {
+   "attributes": {
+    "id": 185,
+    "qr_id": null,
+    "qr_text": "iLCTL",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637305.85690000001,
+    "y": 485749.76689999923
+   }
+  },
+  {
+   "attributes": {
+    "id": 225,
+    "qr_id": null,
+    "qr_text": "rrIuk",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637290.19379999954,
+    "y": 485714.61910000071
+   }
+  },
+  {
+   "attributes": {
+    "id": 229,
+    "qr_id": null,
+    "qr_text": "YKB2m",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637217.37619999982,
+    "y": 485725.39790000021
+   }
+  },
+  {
+   "attributes": {
+    "id": 232,
+    "qr_id": null,
+    "qr_text": "1Nugq",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637217.76470000017,
+    "y": 485732.07550000027
+   }
+  },
+  {
+   "attributes": {
+    "id": 233,
+    "qr_id": null,
+    "qr_text": "d2Cax",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637251.6520999996,
+    "y": 485795.88370000012
+   }
+  },
+  {
+   "attributes": {
+    "id": 238,
+    "qr_id": null,
+    "qr_text": "XBijP",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637327.17169999983,
+    "y": 485646.12820000015
+   }
+  },
+  {
+   "attributes": {
+    "id": 243,
+    "qr_id": null,
+    "qr_text": "unn46",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637282.6612999998,
+    "y": 485766.27559999935
+   }
+  },
+  {
+   "attributes": {
+    "id": 244,
+    "qr_id": null,
+    "qr_text": "RBX15",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637288.03309999965,
+    "y": 485761.64760000072
+   }
+  },
+  {
+   "attributes": {
+    "id": 245,
+    "qr_id": null,
+    "qr_text": "5AjMq",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637252.4422000004,
+    "y": 485799.93700000085
+   }
+  },
+  {
+   "attributes": {
+    "id": 246,
+    "qr_id": null,
+    "qr_text": "yBHKe",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637254.74120000005,
+    "y": 485802.43700000085
+   }
+  },
+  {
+   "attributes": {
+    "id": 247,
+    "qr_id": null,
+    "qr_text": "MGoji",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637252.49990000017,
+    "y": 485804.69920000061
+   }
+  },
+  {
+   "attributes": {
+    "id": 248,
+    "qr_id": null,
+    "qr_text": "cC1rJ",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637250.3459999999,
+    "y": 485805.79480000027
+   }
+  },
+  {
+   "attributes": {
+    "id": 249,
+    "qr_id": null,
+    "qr_text": "tsiD7",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637270.68790000025,
+    "y": 485784.50960000046
+   }
+  },
+  {
+   "attributes": {
+    "id": 250,
+    "qr_id": null,
+    "qr_text": "lk0gV",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637272.78170000017,
+    "y": 485782.1325000003
+   }
+  },
+  {
+   "attributes": {
+    "id": 251,
+    "qr_id": null,
+    "qr_text": "QrG8V",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637276.01420000009,
+    "y": 485779.73570000008
+   }
+  },
+  {
+   "attributes": {
+    "id": 252,
+    "qr_id": null,
+    "qr_text": "Srhy9",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637278.89510000031,
+    "y": 485777.9793999996
+   }
+  },
+  {
+   "attributes": {
+    "id": 253,
+    "qr_id": null,
+    "qr_text": "Y098p",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637281.71970000025,
+    "y": 485774.98409999907
+   }
+  },
+  {
+   "attributes": {
+    "id": 254,
+    "qr_id": null,
+    "qr_text": "yn6zb",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637284.37640000042,
+    "y": 485772.40980000049
+   }
+  },
+  {
+   "attributes": {
+    "id": 256,
+    "qr_id": null,
+    "qr_text": "g22tO",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637287.58970000036,
+    "y": 485761.23929999955
+   }
+  },
+  {
+   "attributes": {
+    "id": 257,
+    "qr_id": null,
+    "qr_text": "he0U3",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637307.00160000008,
+    "y": 485750.03390000015
+   }
+  },
+  {
+   "attributes": {
+    "id": 258,
+    "qr_id": null,
+    "qr_text": "wIBaR",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637310.67030000035,
+    "y": 485746.44270000048
+   }
+  },
+  {
+   "attributes": {
+    "id": 259,
+    "qr_id": null,
+    "qr_text": "G87aY",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637312.95949999988,
+    "y": 485743.96089999937
+   }
+  },
+  {
+   "attributes": {
+    "id": 260,
+    "qr_id": null,
+    "qr_text": "bgHUt",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637313.18319999985,
+    "y": 485742.04770000093
+   }
+  },
+  {
+   "attributes": {
+    "id": 261,
+    "qr_id": null,
+    "qr_text": "8aLyt",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637303.47929999977,
+    "y": 485745.5362999998
+   }
+  },
+  {
+   "attributes": {
+    "id": 262,
+    "qr_id": null,
+    "qr_text": "R4lGE",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637267.27290000021,
+    "y": 485781.68549999967
+   }
+  },
+  {
+   "attributes": {
+    "id": 264,
+    "qr_id": null,
+    "qr_text": "GBuSg",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637269.71740000043,
+    "y": 485780.36350000091
+   }
+  },
+  {
+   "attributes": {
+    "id": 265,
+    "qr_id": null,
+    "qr_text": "m5MGp",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637228.54569999967,
+    "y": 485813.84329999983
+   }
+  },
+  {
+   "attributes": {
+    "id": 266,
+    "qr_id": null,
+    "qr_text": "KeaHs",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637216.99199999962,
+    "y": 485738.19620000012
+   }
+  },
+  {
+   "attributes": {
+    "id": 267,
+    "qr_id": null,
+    "qr_text": "Rbzup",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637217.1501000002,
+    "y": 485728.45179999992
+   }
+  },
+  {
+   "attributes": {
+    "id": 268,
+    "qr_id": null,
+    "qr_text": "X475z",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637241.38580000028,
+    "y": 485715.8004999999
+   }
+  },
+  {
+   "attributes": {
+    "id": 269,
+    "qr_id": null,
+    "qr_text": "yLW9O",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637232.22879999969,
+    "y": 485715.92100000009
+   }
+  },
+  {
+   "attributes": {
+    "id": 270,
+    "qr_id": null,
+    "qr_text": "7rrgp",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637216.99179999996,
+    "y": 485725.46419999935
+   }
+  },
+  {
+   "attributes": {
+    "id": 271,
+    "qr_id": null,
+    "qr_text": "Pw0Kg",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637217.18140000012,
+    "y": 485734.73740000091
+   }
+  },
+  {
+   "attributes": {
+    "id": 272,
+    "qr_id": null,
+    "qr_text": "fzzqv",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637217.5521999998,
+    "y": 485742.03429999948
+   }
+  },
+  {
+   "attributes": {
+    "id": 273,
+    "qr_id": null,
+    "qr_text": "rXMl5",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637217.63850000035,
+    "y": 485752.3646000009
+   }
+  },
+  {
+   "attributes": {
+    "id": 275,
+    "qr_id": null,
+    "qr_text": "gv2Pv",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637224.28430000041,
+    "y": 485764.50779999979
+   }
+  },
+  {
+   "attributes": {
+    "id": 276,
+    "qr_id": null,
+    "qr_text": "zIVdo",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637224.84559999965,
+    "y": 485771.36409999989
+   }
+  },
+  {
+   "attributes": {
+    "id": 277,
+    "qr_id": null,
+    "qr_text": "PwCYY",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637229.16079999972,
+    "y": 485775.56939999945
+   }
+  },
+  {
+   "attributes": {
+    "id": 279,
+    "qr_id": null,
+    "qr_text": "Ak9uJ",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637274.68850000016,
+    "y": 485774.6185999997
+   }
+  },
+  {
+   "attributes": {
+    "id": 280,
+    "qr_id": null,
+    "qr_text": "zfEFN",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637277.29499999993,
+    "y": 485771.58530000038
+   }
+  },
+  {
+   "attributes": {
+    "id": 281,
+    "qr_id": null,
+    "qr_text": "7jp2p",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637286.06830000039,
+    "y": 485763.61260000058
+   }
+  },
+  {
+   "attributes": {
+    "id": 282,
+    "qr_id": null,
+    "qr_text": "Dt73q",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637288.99619999994,
+    "y": 485757.99880000018
+   }
+  },
+  {
+   "attributes": {
+    "id": 283,
+    "qr_id": null,
+    "qr_text": "Ac9HA",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637293.32949999999,
+    "y": 485753.84850000031
+   }
+  },
+  {
+   "attributes": {
+    "id": 284,
+    "qr_id": null,
+    "qr_text": "97sVr",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637302.85520000011,
+    "y": 485745.62030000053
+   }
+  },
+  {
+   "attributes": {
+    "id": 285,
+    "qr_id": null,
+    "qr_text": "YIhLY",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637216.97059999965,
+    "y": 485718.2547999993
+   }
+  },
+  {
+   "attributes": {
+    "id": 286,
+    "qr_id": null,
+    "qr_text": "8zTdg",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637218.57320000045,
+    "y": 485714.2706000004
+   }
+  },
+  {
+   "attributes": {
+    "id": 287,
+    "qr_id": null,
+    "qr_text": "rRFPZ",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637241.67679999955,
+    "y": 485713.75730000064
+   }
+  },
+  {
+   "attributes": {
+    "id": 289,
+    "qr_id": null,
+    "qr_text": "sdyaz",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637280.29729999974,
+    "y": 485716.04030000046
+   }
+  },
+  {
+   "attributes": {
+    "id": 290,
+    "qr_id": null,
+    "qr_text": "327Bj",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637283.15749999974,
+    "y": 485715.45209999941
+   }
+  },
+  {
+   "attributes": {
+    "id": 291,
+    "qr_id": null,
+    "qr_text": "VyJQo",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637289.44759999961,
+    "y": 485714.84789999947
+   }
+  },
+  {
+   "attributes": {
+    "id": 304,
+    "qr_id": null,
+    "qr_text": "omkyq",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637290.82569999993,
+    "y": 485714.80440000072
+   }
+  },
+  {
+   "attributes": {
+    "id": 305,
+    "qr_id": null,
+    "qr_text": "Gv8RU",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637267.43690000009,
+    "y": 485715.17940000072
+   }
+  },
+  {
+   "attributes": {
+    "id": 306,
+    "qr_id": null,
+    "qr_text": "gCcRd",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637260.35309999995,
+    "y": 485714.93339999951
+   }
+  },
+  {
+   "attributes": {
+    "id": 307,
+    "qr_id": null,
+    "qr_text": "n1zhW",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637256.96399999969,
+    "y": 485715.19050000049
+   }
+  },
+  {
+   "attributes": {
+    "id": 308,
+    "qr_id": null,
+    "qr_text": "F4BS6",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637040.58459999971,
+    "y": 485772.87319999933
+   }
+  },
+  {
+   "attributes": {
+    "id": 309,
+    "qr_id": null,
+    "qr_text": "F4BS6",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637255.70469999965,
+    "y": 485716.8348999992
+   }
+  },
+  {
+   "attributes": {
+    "id": 311,
+    "qr_id": null,
+    "qr_text": "aYUXW",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637259.06230000034,
+    "y": 485740.04059999995
+   }
+  },
+  {
+   "attributes": {
+    "id": 312,
+    "qr_id": null,
+    "qr_text": "aYUXW",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637258.10360000003,
+    "y": 485745.09769999981
+   }
+  },
+  {
+   "attributes": {
+    "id": 313,
+    "qr_id": null,
+    "qr_text": "biubU",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637246.20409999974,
+    "y": 485750.02419999987
+   }
+  },
+  {
+   "attributes": {
+    "id": 314,
+    "qr_id": null,
+    "qr_text": "rtH7B",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637243.61010000017,
+    "y": 485751.22189999931
+   }
+  },
+  {
+   "attributes": {
+    "id": 315,
+    "qr_id": null,
+    "qr_text": "e9XEe",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637229.23940000031,
+    "y": 485757.83770000003
+   }
+  },
+  {
+   "attributes": {
+    "id": 316,
+    "qr_id": null,
+    "qr_text": "nhAQ0",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637239.29430000018,
+    "y": 485757.04250000045
+   }
+  },
+  {
+   "attributes": {
+    "id": 317,
+    "qr_id": null,
+    "qr_text": "OJqPh",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637247.72479999997,
+    "y": 485753.16699999943
+   }
+  },
+  {
+   "attributes": {
+    "id": 318,
+    "qr_id": null,
+    "qr_text": "qhjHe",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637259.81429999974,
+    "y": 485748.2918999996
+   }
+  },
+  {
+   "attributes": {
+    "id": 319,
+    "qr_id": null,
+    "qr_text": "JFjHA",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637262.38489999995,
+    "y": 485748.69480000064
+   }
+  },
+  {
+   "attributes": {
+    "id": 321,
+    "qr_id": null,
+    "qr_text": "Zvfqq",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637257.10039999988,
+    "y": 485793.62280000001
+   }
+  },
+  {
+   "attributes": {
+    "id": 322,
+    "qr_id": null,
+    "qr_text": "EpcJM",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637260.9757000003,
+    "y": 485789.24049999937
+   }
+  },
+  {
+   "attributes": {
+    "id": 324,
+    "qr_id": null,
+    "qr_text": "YJSoS",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637287.9040000001,
+    "y": 485761.6819000002
+   }
+  },
+  {
+   "attributes": {
+    "id": 325,
+    "qr_id": null,
+    "qr_text": "R3r5S",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637296.59350000042,
+    "y": 485752.34840000048
+   }
+  },
+  {
+   "attributes": {
+    "id": 326,
+    "qr_id": null,
+    "qr_text": "7CRtg",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637303.18230000045,
+    "y": 485742.37450000085
+   }
+  },
+  {
+   "attributes": {
+    "id": 327,
+    "qr_id": null,
+    "qr_text": "NiX49",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637291.85830000043,
+    "y": 485716.72230000049
+   }
+  },
+  {
+   "attributes": {
+    "id": 328,
+    "qr_id": null,
+    "qr_text": "rn3Un",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637290.22900000028,
+    "y": 485714.5
+   }
+  },
+  {
+   "attributes": {
+    "id": 329,
+    "qr_id": null,
+    "qr_text": "NCh2T",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637283.21389999986,
+    "y": 485714.64980000071
+   }
+  },
+  {
+   "attributes": {
+    "id": 330,
+    "qr_id": null,
+    "qr_text": "be7l0",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637273.69379999954,
+    "y": 485714.67579999939
+   }
+  },
+  {
+   "attributes": {
+    "id": 331,
+    "qr_id": null,
+    "qr_text": "w5EWo",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637267.35989999957,
+    "y": 485714.62340000086
+   }
+  },
+  {
+   "attributes": {
+    "id": 332,
+    "qr_id": null,
+    "qr_text": "wHC63",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637252.86440000031,
+    "y": 485715.39279999956
+   }
+  },
+  {
+   "attributes": {
+    "id": 333,
+    "qr_id": null,
+    "qr_text": "QeZSk",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637241.63480000012,
+    "y": 485715.51899999939
+   }
+  },
+  {
+   "attributes": {
+    "id": 334,
+    "qr_id": null,
+    "qr_text": "k4jlD",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637232.02460000012,
+    "y": 485715.80509999953
+   }
+  },
+  {
+   "attributes": {
+    "id": 335,
+    "qr_id": null,
+    "qr_text": "NH0wJ",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637229.05860000011,
+    "y": 485716.37040000036
+   }
+  },
+  {
+   "attributes": {
+    "id": 336,
+    "qr_id": null,
+    "qr_text": "vwCzR",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637217.03789999988,
+    "y": 485718.11999999918
+   }
+  },
+  {
+   "attributes": {
+    "id": 337,
+    "qr_id": null,
+    "qr_text": "KeaHs",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637217.0504999999,
+    "y": 485735.1791999992
+   }
+  },
+  {
+   "attributes": {
+    "id": 338,
+    "qr_id": null,
+    "qr_text": "LFmbv",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637218.08440000005,
+    "y": 485745.36629999988
+   }
+  },
+  {
+   "attributes": {
+    "id": 340,
+    "qr_id": null,
+    "qr_text": "J3VyU",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637220.67430000007,
+    "y": 485759.34229999967
+   }
+  },
+  {
+   "attributes": {
+    "id": 341,
+    "qr_id": null,
+    "qr_text": "J3VyU",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637223.50879999995,
+    "y": 485766.09329999983
+   }
+  },
+  {
+   "attributes": {
+    "id": 342,
+    "qr_id": null,
+    "qr_text": "hmjgx",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637226.67929999996,
+    "y": 485773.30920000002
+   }
+  },
+  {
+   "attributes": {
+    "id": 343,
+    "qr_id": null,
+    "qr_text": "INBc9",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637224.68960000016,
+    "y": 485771.33440000005
+   }
+  },
+  {
+   "attributes": {
+    "id": 344,
+    "qr_id": null,
+    "qr_text": "H04o3",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637231.59489999991,
+    "y": 485778.06340000033
+   }
+  },
+  {
+   "attributes": {
+    "id": 345,
+    "qr_id": null,
+    "qr_text": "6d0yr",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637246.36089999974,
+    "y": 485791.54629999958
+   }
+  },
+  {
+   "attributes": {
+    "id": 346,
+    "qr_id": null,
+    "qr_text": "S7fxq",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637243.7209999999,
+    "y": 485789.19429999962
+   }
+  },
+  {
+   "attributes": {
+    "id": 347,
+    "qr_id": null,
+    "qr_text": "G260H",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637241.62729999982,
+    "y": 485787.44239999913
+   }
+  },
+  {
+   "attributes": {
+    "id": 348,
+    "qr_id": null,
+    "qr_text": "0UQQ9",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637242.1054999996,
+    "y": 485752.14580000006
+   }
+  },
+  {
+   "attributes": {
+    "id": 349,
+    "qr_id": null,
+    "qr_text": "u5KEb",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637245.28880000021,
+    "y": 485754.09809999913
+   }
+  },
+  {
+   "attributes": {
+    "id": 350,
+    "qr_id": null,
+    "qr_text": "Sp1Hi",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637241.63269999996,
+    "y": 485755.70780000091
+   }
+  },
+  {
+   "attributes": {
+    "id": 351,
+    "qr_id": null,
+    "qr_text": "w93MB",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637238.7555999998,
+    "y": 485757.01429999992
+   }
+  },
+  {
+   "attributes": {
+    "id": 353,
+    "qr_id": null,
+    "qr_text": "OMJ7a",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637232.31390000042,
+    "y": 485760.0429999996
+   }
+  },
+  {
+   "attributes": {
+    "id": 354,
+    "qr_id": null,
+    "qr_text": "keHHX",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637236.35699999984,
+    "y": 485758.12969999947
+   }
+  },
+  {
+   "attributes": {
+    "id": 355,
+    "qr_id": null,
+    "qr_text": "u5KEb",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637250.44959999993,
+    "y": 485751.86510000005
+   }
+  },
+  {
+   "attributes": {
+    "id": 356,
+    "qr_id": null,
+    "qr_text": "ePtW7",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637258.74309999961,
+    "y": 485733.68160000071
+   }
+  },
+  {
+   "attributes": {
+    "id": 358,
+    "qr_id": null,
+    "qr_text": "VBRS8",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637260.30840000045,
+    "y": 485789.26899999939
+   }
+  },
+  {
+   "attributes": {
+    "id": 360,
+    "qr_id": null,
+    "qr_text": "aGrKL",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637240.19649999961,
+    "y": 485785.63409999944
+   }
+  },
+  {
+   "attributes": {
+    "id": 361,
+    "qr_id": null,
+    "qr_text": "IqT7V",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637241.84860000014,
+    "y": 485786.8356999997
+   }
+  },
+  {
+   "attributes": {
+    "id": 362,
+    "qr_id": null,
+    "qr_text": "scZkV",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637246.55530000012,
+    "y": 485791.45879999921
+   }
+  },
+  {
+   "attributes": {
+    "id": 363,
+    "qr_id": null,
+    "qr_text": "bLC3h",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637251.51329999976,
+    "y": 485796.4879999999
+   }
+  },
+  {
+   "attributes": {
+    "id": 364,
+    "qr_id": null,
+    "qr_text": "gv5Rv",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637262.20529999956,
+    "y": 485787.13279999979
+   }
+  },
+  {
+   "attributes": {
+    "id": 365,
+    "qr_id": null,
+    "qr_text": "imLoh",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637277.62299999967,
+    "y": 485772.06570000015
+   }
+  },
+  {
+   "attributes": {
+    "id": 366,
+    "qr_id": null,
+    "qr_text": "n8RQY",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637266.85759999976,
+    "y": 485779.75540000014
+   }
+  },
+  {
+   "attributes": {
+    "id": 368,
+    "qr_id": null,
+    "qr_text": "BAkPR",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637264.87019999977,
+    "y": 485792.82310000062
+   }
+  },
+  {
+   "attributes": {
+    "id": 369,
+    "qr_id": null,
+    "qr_text": "EdgQV",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637260.82380000036,
+    "y": 485796.55360000022
+   }
+  },
+  {
+   "attributes": {
+    "id": 370,
+    "qr_id": null,
+    "qr_text": "P33Jn",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637257.34339999966,
+    "y": 485801.38319999911
+   }
+  },
+  {
+   "attributes": {
+    "id": 371,
+    "qr_id": null,
+    "qr_text": "XdmX6",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637251.51109999977,
+    "y": 485796.5178999994
+   }
+  },
+  {
+   "attributes": {
+    "id": 372,
+    "qr_id": null,
+    "qr_text": "1g3FR",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637246.45419999957,
+    "y": 485791.39399999939
+   }
+  },
+  {
+   "attributes": {
+    "id": 373,
+    "qr_id": null,
+    "qr_text": "o3hzm",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637240.01699999999,
+    "y": 485784.62109999917
+   }
+  },
+  {
+   "attributes": {
+    "id": 374,
+    "qr_id": null,
+    "qr_text": "HIsR5",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637234.32010000013,
+    "y": 485779.88780000061
+   }
+  },
+  {
+   "attributes": {
+    "id": 375,
+    "qr_id": null,
+    "qr_text": "qmPYY",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637228.25270000007,
+    "y": 485773.81519999914
+   }
+  },
+  {
+   "attributes": {
+    "id": 376,
+    "qr_id": null,
+    "qr_text": "nLrB2",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637228.90419999976,
+    "y": 485771.52040000074
+   }
+  },
+  {
+   "attributes": {
+    "id": 377,
+    "qr_id": null,
+    "qr_text": "kiBAW",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637223.54750000034,
+    "y": 485765.1604999993
+   }
+  },
+  {
+   "attributes": {
+    "id": 378,
+    "qr_id": null,
+    "qr_text": "XkYSO",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637222.29260000028,
+    "y": 485762.41459999979
+   }
+  },
+  {
+   "attributes": {
+    "id": 379,
+    "qr_id": null,
+    "qr_text": "Isf7U",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637221.10699999984,
+    "y": 485759.86089999974
+   }
+  },
+  {
+   "attributes": {
+    "id": 380,
+    "qr_id": null,
+    "qr_text": "hd4CO",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637220.00789999962,
+    "y": 485752.88869999908
+   }
+  },
+  {
+   "attributes": {
+    "id": 381,
+    "qr_id": null,
+    "qr_text": "E0Chf",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637217.67810000014,
+    "y": 485752.42689999938
+   }
+  },
+  {
+   "attributes": {
+    "id": 382,
+    "qr_id": null,
+    "qr_text": "PVYYI",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637217.55999999959,
+    "y": 485751.21209999919
+   }
+  },
+  {
+   "attributes": {
+    "id": 383,
+    "qr_id": null,
+    "qr_text": "H8CR4",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637217.82039999962,
+    "y": 485745.93129999936
+   }
+  },
+  {
+   "attributes": {
+    "id": 384,
+    "qr_id": null,
+    "qr_text": "fr3UC",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637217.36000000034,
+    "y": 485730.87439999916
+   }
+  },
+  {
+   "attributes": {
+    "id": 385,
+    "qr_id": null,
+    "qr_text": "pkvpj",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637217.42619999964,
+    "y": 485725.87299999967
+   }
+  },
+  {
+   "attributes": {
+    "id": 386,
+    "qr_id": null,
+    "qr_text": "1hRCD",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637214.37679999974,
+    "y": 485724.07169999927
+   }
+  },
+  {
+   "attributes": {
+    "id": 387,
+    "qr_id": null,
+    "qr_text": "pCvtl",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637214.44620000012,
+    "y": 485721.67870000005
+   }
+  },
+  {
+   "attributes": {
+    "id": 388,
+    "qr_id": null,
+    "qr_text": "eQOuJ",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637237.75879999995,
+    "y": 485715.77889999934
+   }
+  },
+  {
+   "attributes": {
+    "id": 389,
+    "qr_id": null,
+    "qr_text": "fbx1c",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637234.95729999989,
+    "y": 485713.48450000025
+   }
+  },
+  {
+   "attributes": {
+    "id": 390,
+    "qr_id": null,
+    "qr_text": "BBotd",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637235.09250000026,
+    "y": 485716.10349999927
+   }
+  },
+  {
+   "attributes": {
+    "id": 391,
+    "qr_id": null,
+    "qr_text": "6S2td",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637228.52869999968,
+    "y": 485714.21309999935
+   }
+  },
+  {
+   "attributes": {
+    "id": 392,
+    "qr_id": null,
+    "qr_text": "6TkNu",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637225.57909999974,
+    "y": 485716.19170000032
+   }
+  },
+  {
+   "attributes": {
+    "id": 393,
+    "qr_id": null,
+    "qr_text": "90G3F",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637252.99309999961,
+    "y": 485715.65279999934
+   }
+  },
+  {
+   "attributes": {
+    "id": 394,
+    "qr_id": null,
+    "qr_text": "26SYO",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637258.50569999963,
+    "y": 485740.1576000005
+   }
+  },
+  {
+   "attributes": {
+    "id": 396,
+    "qr_id": null,
+    "qr_text": "TDINI",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637265.50490000006,
+    "y": 485752.99799999967
+   }
+  },
+  {
+   "attributes": {
+    "id": 397,
+    "qr_id": null,
+    "qr_text": "Mwg8u",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637268.1409,
+    "y": 485755.3189000003
+   }
+  },
+  {
+   "attributes": {
+    "id": 399,
+    "qr_id": null,
+    "qr_text": "ZuSo1",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637263.50480000023,
+    "y": 485750.92109999992
+   }
+  },
+  {
+   "attributes": {
+    "id": 400,
+    "qr_id": null,
+    "qr_text": "QUW9K",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637260.09499999974,
+    "y": 485745.63759999909
+   }
+  },
+  {
+   "attributes": {
+    "id": 401,
+    "qr_id": null,
+    "qr_text": "LJ65q",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637269.91199999955,
+    "y": 485757.36979999952
+   }
+  },
+  {
+   "attributes": {
+    "id": 402,
+    "qr_id": null,
+    "qr_text": "dbfe4",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637274.63049999997,
+    "y": 485763.85119999945
+   }
+  },
+  {
+   "attributes": {
+    "id": 403,
+    "qr_id": null,
+    "qr_text": "SNLdA",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637274.81180000026,
+    "y": 485763.86759999953
+   }
+  },
+  {
+   "attributes": {
+    "id": 404,
+    "qr_id": null,
+    "qr_text": "4UzEk",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637282.94369999971,
+    "y": 485766.44779999927
+   }
+  },
+  {
+   "attributes": {
+    "id": 405,
+    "qr_id": null,
+    "qr_text": "NbssL",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637270.98340000026,
+    "y": 485757.37600000016
+   }
+  },
+  {
+   "attributes": {
+    "id": 406,
+    "qr_id": null,
+    "qr_text": "1yT7l",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637266.42229999974,
+    "y": 485753.09109999985
+   }
+  },
+  {
+   "attributes": {
+    "id": 407,
+    "qr_id": null,
+    "qr_text": "HiWLY",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637259.20220000017,
+    "y": 485748.45299999975
+   }
+  },
+  {
+   "attributes": {
+    "id": 408,
+    "qr_id": null,
+    "qr_text": "mAfSd",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637251.03969999962,
+    "y": 485749.81200000085
+   }
+  },
+  {
+   "attributes": {
+    "id": 409,
+    "qr_id": null,
+    "qr_text": "bLZgN",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637257.74590000045,
+    "y": 485744.79519999959
+   }
+  },
+  {
+   "attributes": {
+    "id": 410,
+    "qr_id": null,
+    "qr_text": "vz6s5",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637259.20100000035,
+    "y": 485736.84369999915
+   }
+  },
+  {
+   "attributes": {
+    "id": 411,
+    "qr_id": null,
+    "qr_text": "tpj0F",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637283.09810000006,
+    "y": 485715.15020000003
+   }
+  },
+  {
+   "attributes": {
+    "id": 412,
+    "qr_id": null,
+    "qr_text": "GyQaV",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637279.21310000028,
+    "y": 485714.92860000022
+   }
+  },
+  {
+   "attributes": {
+    "id": 413,
+    "qr_id": null,
+    "qr_text": "vQHhf",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637270.07120000012,
+    "y": 485715.16950000077
+   }
+  },
+  {
+   "attributes": {
+    "id": 414,
+    "qr_id": null,
+    "qr_text": "CfLeN",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637267.39250000007,
+    "y": 485715.4888000004
+   }
+  },
+  {
+   "attributes": {
+    "id": 415,
+    "qr_id": null,
+    "qr_text": "MEO4k",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637289.90639999975,
+    "y": 485714.59200000018
+   }
+  },
+  {
+   "attributes": {
+    "id": 416,
+    "qr_id": null,
+    "qr_text": "3lCJw",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637283.10470000003,
+    "y": 485714.68620000035
+   }
+  },
+  {
+   "attributes": {
+    "id": 417,
+    "qr_id": null,
+    "qr_text": "69AC1",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637267.5103000002,
+    "y": 485714.87619999982
+   }
+  },
+  {
+   "attributes": {
+    "id": 418,
+    "qr_id": null,
+    "qr_text": "dc7E0",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637260.54710000008,
+    "y": 485715.00679999962
+   }
+  },
+  {
+   "attributes": {
+    "id": 419,
+    "qr_id": null,
+    "qr_text": "e22Fd",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637241.61969999969,
+    "y": 485715.47309999913
+   }
+  },
+  {
+   "attributes": {
+    "id": 420,
+    "qr_id": null,
+    "qr_text": "ejhJv",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637231.9972000001,
+    "y": 485715.98970000073
+   }
+  },
+  {
+   "attributes": {
+    "id": 460,
+    "qr_id": null,
+    "qr_text": "3GrfD",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637228.94830000028,
+    "y": 485716.13859999925
+   }
+  },
+  {
+   "attributes": {
+    "id": 421,
+    "qr_id": null,
+    "qr_text": "3QO5Y",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637218.81790000014,
+    "y": 485716.30519999936
+   }
+  },
+  {
+   "attributes": {
+    "id": 422,
+    "qr_id": null,
+    "qr_text": "7teIX",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637216.78780000005,
+    "y": 485718.48420000076
+   }
+  },
+  {
+   "attributes": {
+    "id": 423,
+    "qr_id": null,
+    "qr_text": "rSvQJ",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637216.98990000039,
+    "y": 485725.46920000017
+   }
+  },
+  {
+   "attributes": {
+    "id": 424,
+    "qr_id": null,
+    "qr_text": "o9AkN",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637217.30999999959,
+    "y": 485741.84909999929
+   }
+  },
+  {
+   "attributes": {
+    "id": 425,
+    "qr_id": null,
+    "qr_text": "UaqwJ",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637217.37619999982,
+    "y": 485752.24569999985
+   }
+  },
+  {
+   "attributes": {
+    "id": 426,
+    "qr_id": null,
+    "qr_text": "XSWgc",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637220.80109999981,
+    "y": 485759.67540000007
+   }
+  },
+  {
+   "attributes": {
+    "id": 427,
+    "qr_id": null,
+    "qr_text": "W0J1s",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637223.5932,
+    "y": 485765.74569999985
+   }
+  },
+  {
+   "attributes": {
+    "id": 428,
+    "qr_id": null,
+    "qr_text": "C0aU5",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637225.00349999964,
+    "y": 485771.37250000052
+   }
+  },
+  {
+   "attributes": {
+    "id": 429,
+    "qr_id": null,
+    "qr_text": "OS14p",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637226.49509999994,
+    "y": 485773.05279999971
+   }
+  },
+  {
+   "attributes": {
+    "id": 430,
+    "qr_id": null,
+    "qr_text": "5B3L9",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637231.57469999976,
+    "y": 485777.98560000025
+   }
+  },
+  {
+   "attributes": {
+    "id": 432,
+    "qr_id": null,
+    "qr_text": "8lt5R",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637242.06790000014,
+    "y": 485787.33440000005
+   }
+  },
+  {
+   "attributes": {
+    "id": 433,
+    "qr_id": null,
+    "qr_text": "2Vlpy",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637251.42499999981,
+    "y": 485796.10700000077
+   }
+  },
+  {
+   "attributes": {
+    "id": 434,
+    "qr_id": null,
+    "qr_text": "noYcz",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637253.60800000001,
+    "y": 485796.11730000004
+   }
+  },
+  {
+   "attributes": {
+    "id": 461,
+    "qr_id": null,
+    "qr_text": "s7EL9",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637260.63310000021,
+    "y": 485788.87350000069
+   }
+  },
+  {
+   "attributes": {
+    "id": 436,
+    "qr_id": null,
+    "qr_text": "IDJpC",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637266.94130000006,
+    "y": 485782.08630000055
+   }
+  },
+  {
+   "attributes": {
+    "id": 437,
+    "qr_id": null,
+    "qr_text": "jOMjN",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637269.63289999962,
+    "y": 485780.02229999937
+   }
+  },
+  {
+   "attributes": {
+    "id": 438,
+    "qr_id": null,
+    "qr_text": "FPTcn",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637264.80929999985,
+    "y": 485775.77410000004
+   }
+  },
+  {
+   "attributes": {
+    "id": 439,
+    "qr_id": null,
+    "qr_text": "tONZE",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637288.00739999954,
+    "y": 485761.54319999926
+   }
+  },
+  {
+   "attributes": {
+    "id": 440,
+    "qr_id": null,
+    "qr_text": "B104T",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637298.68759999983,
+    "y": 485750.32880000025
+   }
+  },
+  {
+   "attributes": {
+    "id": 442,
+    "qr_id": null,
+    "qr_text": "tAo70",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637301.09360000025,
+    "y": 485735.15249999985
+   }
+  },
+  {
+   "attributes": {
+    "id": 443,
+    "qr_id": null,
+    "qr_text": "O6wEv",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637298.25530000031,
+    "y": 485729.42520000041
+   }
+  },
+  {
+   "attributes": {
+    "id": 444,
+    "qr_id": null,
+    "qr_text": "iQhib",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637295.60230000038,
+    "y": 485723.19559999928
+   }
+  },
+  {
+   "attributes": {
+    "id": 445,
+    "qr_id": null,
+    "qr_text": "mBnoG",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637258.73620000016,
+    "y": 485730.44260000065
+   }
+  },
+  {
+   "attributes": {
+    "id": 446,
+    "qr_id": null,
+    "qr_text": "KVvBh",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637258.77020000014,
+    "y": 485736.8518000003
+   }
+  },
+  {
+   "attributes": {
+    "id": 448,
+    "qr_id": null,
+    "qr_text": "LniA7",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637251.29430000018,
+    "y": 485749.57220000029
+   }
+  },
+  {
+   "attributes": {
+    "id": 449,
+    "qr_id": null,
+    "qr_text": "fPtkS",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637257.81759999972,
+    "y": 485745.01669999957
+   }
+  },
+  {
+   "attributes": {
+    "id": 450,
+    "qr_id": null,
+    "qr_text": "kqzMc",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637273.07180000003,
+    "y": 485763.38319999911
+   }
+  },
+  {
+   "attributes": {
+    "id": 451,
+    "qr_id": null,
+    "qr_text": "gW2aI",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637270.45040000044,
+    "y": 485764.76559999958
+   }
+  },
+  {
+   "attributes": {
+    "id": 453,
+    "qr_id": null,
+    "qr_text": "MaWgr",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637289.90199999977,
+    "y": 485759.22479999997
+   }
+  },
+  {
+   "attributes": {
+    "id": 454,
+    "qr_id": null,
+    "qr_text": "jv3bJ",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637296.15390000027,
+    "y": 485752.19749999978
+   }
+  },
+  {
+   "attributes": {
+    "id": 462,
+    "qr_id": null,
+    "qr_text": "8JZhE",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637264.50530000031,
+    "y": 485784.48169999942
+   }
+  },
+  {
+   "attributes": {
+    "id": 464,
+    "qr_id": null,
+    "qr_text": "WGEzr",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637303.51659999974,
+    "y": 485745.30939999968
+   }
+  },
+  {
+   "attributes": {
+    "id": 465,
+    "qr_id": null,
+    "qr_text": "7GDEB",
+    "building_id": 39,
+    "poziom": 6,
+    "floor_id": 6
+   },
+   "geometry": {
+    "x": 637250.85080000013,
+    "y": 485752.27500000037
+   }
+  },
+  {
+   "attributes": {
+    "id": 466,
+    "qr_id": null,
+    "qr_text": "nDdYf",
+    "building_id": 39,
+    "poziom": 6,
+    "floor_id": 6
+   },
+   "geometry": {
+    "x": 637248.81709999964,
+    "y": 485755.04780000076
+   }
+  },
+  {
+   "attributes": {
+    "id": 467,
+    "qr_id": null,
+    "qr_text": "qnmXV",
+    "building_id": 39,
+    "poziom": 6,
+    "floor_id": 6
+   },
+   "geometry": {
+    "x": 637235.84250000026,
+    "y": 485760.03270000033
+   }
+  },
+  {
+   "attributes": {
+    "id": 468,
+    "qr_id": null,
+    "qr_text": "CjzUH",
+    "building_id": 39,
+    "poziom": 6,
+    "floor_id": 6
+   },
+   "geometry": {
+    "x": 637240.85099999979,
+    "y": 485757.30000000075
+   }
+  },
+  {
+   "attributes": {
+    "id": 469,
+    "qr_id": null,
+    "qr_text": "00000301",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637235.05080000032,
+    "y": 485795.95069999993
+   }
+  },
+  {
+   "attributes": {
+    "id": 473,
+    "qr_id": null,
+    "qr_text": "00000302",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637177.16189999972,
+    "y": 485782.00430000015
+   }
+  },
+  {
+   "attributes": {
+    "id": 479,
+    "qr_id": null,
+    "qr_text": "00000300",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637259.88129999954,
+    "y": 485828.10969999991
+   }
+  },
+  {
+   "attributes": {
+    "id": 481,
+    "qr_id": null,
+    "qr_text": "Oadeo",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637256.39800000004,
+    "y": 485793.95170000009
+   }
+  },
+  {
+   "attributes": {
+    "id": 482,
+    "qr_id": null,
+    "qr_text": "1DYvW",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637258.23809999973,
+    "y": 485791.92270000093
+   }
+  },
+  {
+   "attributes": {
+    "id": 881,
+    "qr_id": null,
+    "qr_text": "eUutf",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637260.92229999974,
+    "y": 485789.54270000011
+   }
+  },
+  {
+   "attributes": {
+    "id": 483,
+    "qr_id": null,
+    "qr_text": "WKbvs",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637296.1166000003,
+    "y": 485752.53060000017
+   }
+  },
+  {
+   "attributes": {
+    "id": 1281,
+    "qr_id": null,
+    "qr_text": "wSFy3",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637298.55460000038,
+    "y": 485750.00200000033
+   }
+  },
+  {
+   "attributes": {
+    "id": 484,
+    "qr_id": null,
+    "qr_text": "76DgY",
+    "building_id": 39,
+    "poziom": 1,
+    "floor_id": 1
+   },
+   "geometry": {
+    "x": 637259.0401999997,
+    "y": 485730.55920000002
+   }
+  },
+  {
+   "attributes": {
+    "id": 882,
+    "qr_id": null,
+    "qr_text": "OpCnQ",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637277.80900000036,
+    "y": 485771.95600000024
+   }
+  },
+  {
+   "attributes": {
+    "id": 883,
+    "qr_id": null,
+    "qr_text": "blUOZ",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637251.23060000036,
+    "y": 485796.49149999954
+   }
+  },
+  {
+   "attributes": {
+    "id": 884,
+    "qr_id": null,
+    "qr_text": "FKwTT",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637217.43059999961,
+    "y": 485754.54429999925
+   }
+  },
+  {
+   "attributes": {
+    "id": 885,
+    "qr_id": null,
+    "qr_text": "2pivq",
+    "building_id": 39,
+    "poziom": 2,
+    "floor_id": 2
+   },
+   "geometry": {
+    "x": 637266.3618999999,
+    "y": 485753.37649999931
+   }
+  },
+  {
+   "attributes": {
+    "id": 886,
+    "qr_id": null,
+    "qr_text": "vAbNZ",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637246.32479999959,
+    "y": 485791.39650000073
+   }
+  },
+  {
+   "attributes": {
+    "id": 887,
+    "qr_id": null,
+    "qr_text": "xNX1O",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637240.4785000002,
+    "y": 485786.10249999911
+   }
+  },
+  {
+   "attributes": {
+    "id": 888,
+    "qr_id": null,
+    "qr_text": "iAMgR",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637270.44039999973,
+    "y": 485757.5530999992
+   }
+  },
+  {
+   "attributes": {
+    "id": 889,
+    "qr_id": null,
+    "qr_text": "KoOAf",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637265.98300000001,
+    "y": 485753.51270000078
+   }
+  },
+  {
+   "attributes": {
+    "id": 890,
+    "qr_id": null,
+    "qr_text": "U4MdJ",
+    "building_id": 39,
+    "poziom": 3,
+    "floor_id": 3
+   },
+   "geometry": {
+    "x": 637259.89749999996,
+    "y": 485747.80660000071
+   }
+  },
+  {
+   "attributes": {
+    "id": 891,
+    "qr_id": null,
+    "qr_text": "jEgsN",
+    "building_id": 39,
+    "poziom": 4,
+    "floor_id": 4
+   },
+   "geometry": {
+    "x": 637233.54200000037,
+    "y": 485779.71570000052
+   }
+  },
+  {
+   "attributes": {
+    "id": 892,
+    "qr_id": null,
+    "qr_text": "TtByT",
+    "building_id": 39,
+    "poziom": 5,
+    "floor_id": 5
+   },
+   "geometry": {
+    "x": 637264.30559999961,
+    "y": 485715.3200000003
+   }
+  }
+ ]
+}

@@ -1,19 +1,17 @@
 package pl.jb.nawigacjahotel
 
 import android.app.Application
-import com.esri.arcgisruntime.ArcGISRuntimeEnvironment
+import com.arcgismaps.ApiKey
+import com.arcgismaps.ArcGISEnvironment
 
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        ArcGISRuntimeEnvironment.setApiKey(
-            getString(R.string.maps_api_key)
-        )
-
-        ArcGISRuntimeEnvironment.setLicense(
-            getString(R.string.arc_gis_license)
-        )
+        ArcGISEnvironment.apiKey =
+            ApiKey.create(
+                getString(R.string.maps_api_key)
+            )
     }
 }
