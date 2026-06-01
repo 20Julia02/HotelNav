@@ -27,6 +27,9 @@ import com.arcgismaps.mapping.ArcGISMap
 import com.arcgismaps.mapping.BasemapStyle
 import com.arcgismaps.mapping.Viewpoint
 import com.arcgismaps.mapping.layers.FeatureLayer
+import com.arcgismaps.mapping.symbology.CompositeSymbol
+import com.arcgismaps.mapping.symbology.SimpleLineSymbol
+import com.arcgismaps.mapping.symbology.SimpleLineSymbolStyle
 import com.arcgismaps.mapping.symbology.SimpleMarkerSymbol
 import com.arcgismaps.mapping.symbology.SimpleMarkerSymbolStyle
 import com.arcgismaps.mapping.view.Graphic
@@ -121,12 +124,32 @@ fun MainScreen(
                     GraphicsOverlay().apply {
                         if (coords.isUserPosition) {
                             val point = Point(coords.lon, coords.lat, SpatialReference.wgs84())
-                            val symbol = SimpleMarkerSymbol(
+
+                            // 1. Outer translucent halo (26, 115, 232 is Google Blue. Alpha is 51 out of 255 -> 20% opacity)
+                            val outerHalo = SimpleMarkerSymbol(
                                 style = SimpleMarkerSymbolStyle.Circle,
-                                color = Color.red,
-                                size = 12f
+                                color = Color.fromRgba(26, 115, 232, 51),
+                                size = 24f
                             )
-                            graphics.add(Graphic(geometry = point, symbol = symbol))
+
+                            // 2. Sharp inner core with a crisp white outline
+                            val innerCore = SimpleMarkerSymbol(
+                                style = SimpleMarkerSymbolStyle.Circle,
+                                color = Color.fromRgba(26, 115, 232, 255), // Solid modern blue
+                                size = 12f
+                            ).apply {
+                                outline = SimpleLineSymbol(
+                                    style = SimpleLineSymbolStyle.Solid,
+                                    color = Color.white,
+                                    width = 1.5f
+                                )
+                            }
+
+                            // 3. Combine them into a CompositeSymbol
+                            val compositeSymbol = CompositeSymbol(listOf(outerHalo, innerCore))
+
+                            // Add it to the overlay cleanly
+                            graphics.add(Graphic(geometry = point, symbol = compositeSymbol))
                         }
                     }
                 }
