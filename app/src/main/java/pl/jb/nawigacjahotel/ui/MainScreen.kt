@@ -1,5 +1,6 @@
 package pl.jb.nawigacjahotel.ui
 
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,19 +12,28 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color as ComposeColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import com.arcgismaps.Color
 import com.arcgismaps.data.ServiceFeatureTable
+import com.arcgismaps.geometry.Point
+import com.arcgismaps.geometry.SpatialReference
 import com.arcgismaps.mapping.ArcGISMap
 import com.arcgismaps.mapping.BasemapStyle
 import com.arcgismaps.mapping.Viewpoint
 import com.arcgismaps.mapping.layers.FeatureLayer
+import com.arcgismaps.mapping.symbology.SimpleMarkerSymbol
+import com.arcgismaps.mapping.symbology.SimpleMarkerSymbolStyle
+import com.arcgismaps.mapping.view.Graphic
+import com.arcgismaps.mapping.view.GraphicsOverlay
 import com.arcgismaps.toolkit.geoviewcompose.MapView
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 
 import pl.jb.nawigacjahotel.R
 import pl.jb.nawigacjahotel.common.ResultState
@@ -44,7 +54,7 @@ fun createMap(lat: Double, lon: Double): ArcGISMap {
         initialViewpoint = Viewpoint(
             latitude = lat,
             longitude = lon,
-            scale = 5000.0
+            scale = 2000.0
         )
 
         operationalLayers.add(featureLayerRooms)
@@ -54,7 +64,6 @@ fun createMap(lat: Double, lon: Double): ArcGISMap {
 @Composable
 fun MainScreen(
     viewModel: MainViewModel,
-    onScanClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -81,6 +90,12 @@ fun MainScreen(
             it.contains(searchQuery, true)
         }
 
+    val barcodeLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
+        if (result.contents != null) {
+            viewModel.onQrScanned(result.contents)
+        }
+    }
+
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -102,9 +117,24 @@ fun MainScreen(
                     createMap(coords.lat, coords.lon)
                 }
 
+                val graphicsOverlay = remember(coords) {
+                    GraphicsOverlay().apply {
+                        if (coords.isUserPosition) {
+                            val point = Point(coords.lon, coords.lat, SpatialReference.wgs84())
+                            val symbol = SimpleMarkerSymbol(
+                                style = SimpleMarkerSymbolStyle.Circle,
+                                color = Color.red,
+                                size = 12f
+                            )
+                            graphics.add(Graphic(geometry = point, symbol = symbol))
+                        }
+                    }
+                }
+
                 MapView(
                     modifier = Modifier.fillMaxSize(),
-                    arcGISMap = map
+                    arcGISMap = map,
+                    graphicsOverlays = listOf(graphicsOverlay)
                 )
             }
 
@@ -133,7 +163,7 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp),
-                color = Color.Black
+                color = ComposeColor.Black
             )
 
             Row(
@@ -169,7 +199,15 @@ fun MainScreen(
                 ) {
 
                     IconButton(
-                        onClick = onScanClick,
+                        onClick = {
+                            val options = ScanOptions().apply {
+                                setCaptureActivity(ScannerActivity::class.java)
+                                setPrompt("Zeskanuj kod QR")
+                                setBeepEnabled(true)
+                                setOrientationLocked(true)
+                            }
+                            barcodeLauncher.launch(options)
+                        },
                         modifier = Modifier.fillMaxSize()
                     ) {
 
@@ -183,7 +221,7 @@ fun MainScreen(
                                     id = R.drawable.qrcodescanicon
                                 ),
                                 contentDescription = null,
-                                tint = Color.Unspecified
+                                tint = ComposeColor.Unspecified
                             )
 
                             Text(
