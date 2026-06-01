@@ -193,7 +193,8 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 OutlinedTextField(
@@ -203,24 +204,34 @@ fun MainScreen(
                         isSuggestionsVisible = it.isNotEmpty()
                     },
                     placeholder = {
-                        Text("Wyszukaj miejsce...")
+                        Text("Wyszukaj miejsce...", color = ComposeColor.Gray)
                     },
                     leadingIcon = {
                         Icon(
                             Icons.Default.Search,
-                            contentDescription = null
+                            contentDescription = null,
+                            tint = ComposeColor.Gray
                         )
                     },
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(12.dp),
-                    singleLine = true
+                    singleLine = true,
+                    // Material 3 explicit container and indicator color overrides
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = ComposeColor.White.copy(alpha = 0.85f),
+                        unfocusedContainerColor = ComposeColor.White.copy(alpha = 0.75f),
+                        focusedBorderColor = ComposeColor.Transparent,
+                        unfocusedBorderColor = ComposeColor.Transparent
+                    )
                 )
 
                 Card(
                     modifier = Modifier.size(54.dp),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = ComposeColor.White.copy(alpha = 0.75f)
+                    )
                 ) {
-
                     IconButton(
                         onClick = {
                             val options = ScanOptions().apply {
@@ -233,23 +244,19 @@ fun MainScreen(
                         },
                         modifier = Modifier.fillMaxSize()
                     ) {
-
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
-
                             Icon(
-                                painter = painterResource(
-                                    id = R.drawable.qrcodescanicon
-                                ),
+                                painter = painterResource(id = R.drawable.qrcodescanicon),
                                 contentDescription = null,
-                                tint = ComposeColor.Unspecified
+                                tint = ComposeColor.Black
                             )
-
                             Text(
                                 text = "QR",
-                                fontSize = 10.sp
+                                fontSize = 10.sp,
+                                color = ComposeColor.Black
                             )
                         }
                     }
