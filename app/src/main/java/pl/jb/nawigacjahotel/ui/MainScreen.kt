@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.arcgismaps.Color
 import com.arcgismaps.data.ServiceFeatureTable
 import com.arcgismaps.geometry.Point
+import com.arcgismaps.geometry.PolylineBuilder
 import com.arcgismaps.geometry.SpatialReference
 import com.arcgismaps.mapping.ArcGISMap
 import com.arcgismaps.mapping.BasemapStyle
@@ -45,21 +46,15 @@ private const val ROOMS_LAYER_URL =
     "https://arcgis.cenagis.edu.pl/server/rest/services/SION2_Topo_MV/sion2_wms_topo_GG_f19/MapServer/5"
 
 fun createMap(lat: Double, lon: Double): ArcGISMap {
-
-    val roomServiceTable =
-        ServiceFeatureTable(ROOMS_LAYER_URL)
-
-    val featureLayerRooms =
-        FeatureLayer.createWithFeatureTable(roomServiceTable)
+    val roomServiceTable = ServiceFeatureTable(ROOMS_LAYER_URL)
+    val featureLayerRooms = FeatureLayer.createWithFeatureTable(roomServiceTable)
 
     return ArcGISMap(BasemapStyle.ArcGISTopographic).apply {
-
         initialViewpoint = Viewpoint(
             latitude = lat,
             longitude = lon,
             scale = 2000.0
         )
-
         operationalLayers.add(featureLayerRooms)
     }
 }
@@ -69,29 +64,17 @@ fun MainScreen(
     viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
-
     val state by viewModel.locationState.collectAsState()
 
-    var searchQuery by remember {
-        mutableStateOf("")
+    var searchQuery by remember { mutableStateOf("") }
+    var isSuggestionsVisible by remember { mutableStateOf(false) }
+
+    // Lista pobierana z kluczy mapy zdefiniowanej w ViewModelu
+    val allSuggestions = viewModel.destinationMap.keys.toList()
+
+    val filteredSuggestions = allSuggestions.filter {
+        it.contains(searchQuery, true)
     }
-
-    var isSuggestionsVisible by remember {
-        mutableStateOf(false)
-    }
-
-    val allSuggestions = listOf(
-        "Restauracja \"Vivaldi\"",
-        "Basen i Spa",
-        "Recepcja",
-        "Konferencja Apollo",
-        "Winda Główna"
-    )
-
-    val filteredSuggestions =
-        allSuggestions.filter {
-            it.contains(searchQuery, true)
-        }
 
     val barcodeLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
         if (result.contents != null) {
@@ -99,43 +82,41 @@ fun MainScreen(
         }
     }
 
-    Box(
-        modifier = modifier.fillMaxSize()
-    ) {
-
+    Box(modifier = modifier.fillMaxSize()) {
         when (val currentState = state) {
-
             is ResultState.Loading -> {
-
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
 
             is ResultState.Success -> {
+                val navigationData = currentState.data
 
-                val coords = currentState.data
-
-                val map = remember(coords.lat, coords.lon) {
-                    createMap(coords.lat, coords.lon)
+                // Pamiętamy mapę dla danych współrzędnych
+                val map = remember(navigationData.lat, navigationData.lon) {
+                    createMap(navigationData.lat, navigationData.lon)
                 }
 
-                val graphicsOverlay = remember(coords) {
+                // Generowanie nakładki graficznej (punkty i linie trasy)
+                val graphicsOverlay = remember(navigationData) {
                     GraphicsOverlay().apply {
-                        if (coords.isUserPosition) {
-                            val point = Point(coords.lon, coords.lat, SpatialReference.wgs84())
 
-                            // 1. Outer translucent halo (26, 115, 232 is Google Blue. Alpha is 51 out of 255 -> 20% opacity)
+                        // 1. RYSOWANIE KROPKI LOKALIZACJI UŻYTKOWNIKA (Z KODU QR)
+                        if (navigationData.isUserPosition) {
+                            val userPoint = Point(navigationData.lon, navigationData.lat, SpatialReference.wgs84())
+
+                            // Efekt poświaty wokół kropki (Google Blue, 20% widoczności)
                             val outerHalo = SimpleMarkerSymbol(
                                 style = SimpleMarkerSymbolStyle.Circle,
                                 color = Color.fromRgba(26, 115, 232, 51),
                                 size = 24f
                             )
 
-                            // 2. Sharp inner core with a crisp white outline
+                            // Wewnętrzny rdzeń z białą obwódką
                             val innerCore = SimpleMarkerSymbol(
                                 style = SimpleMarkerSymbolStyle.Circle,
-                                color = Color.fromRgba(26, 115, 232, 255), // Solid modern blue
+                                color = Color.fromRgba(26, 115, 232, 255),
                                 size = 12f
                             ).apply {
                                 outline = SimpleLineSymbol(
@@ -145,11 +126,40 @@ fun MainScreen(
                                 )
                             }
 
-                            // 3. Combine them into a CompositeSymbol
                             val compositeSymbol = CompositeSymbol(listOf(outerHalo, innerCore))
+                            graphics.add(Graphic(geometry = userPoint, symbol = compositeSymbol))
+                        }
 
-                            // Add it to the overlay cleanly
-                            graphics.add(Graphic(geometry = point, symbol = compositeSymbol))
+                        // 2. RYSOWANIE LINII TRASY (WYNIK DIJKSTRY)
+                        if (navigationData.calculatedRoutePoints.isNotEmpty()) {
+                            // Konwersja par (Lat, Lon) na punkty ArcGIS
+                            val routePoints = navigationData.calculatedRoutePoints.map { (lat, lon) ->
+                                Point(lon, lat, SpatialReference.wgs84())
+                            }
+
+                            // Budowanie linii łamanej łączącej punkty
+                            val polylineBuilder = PolylineBuilder(SpatialReference.wgs84()).apply {
+                                routePoints.forEach { addPoint(it) }
+                            }
+                            val routeGeometry = polylineBuilder.toGeometry()
+
+                            // Styl czerwonej linii nawigacyjnej
+                            val lineSymbol = SimpleLineSymbol(
+                                style = SimpleLineSymbolStyle.Solid,
+                                color = Color.fromRgba(232, 26, 26, 255),
+                                width = 4f
+                            )
+                            graphics.add(Graphic(geometry = routeGeometry, symbol = lineSymbol))
+
+                            // Dodanie małego znacznika (X) na końcu trasy (celu podróży)
+                            routePoints.lastOrNull()?.let { endPoint ->
+                                val finishMarker = SimpleMarkerSymbol(
+                                    style = SimpleMarkerSymbolStyle.X,
+                                    color = Color.fromRgba(232, 26, 26, 255),
+                                    size = 14f
+                                )
+                                graphics.add(Graphic(geometry = endPoint, symbol = finishMarker))
+                            }
                         }
                     }
                 }
@@ -162,21 +172,22 @@ fun MainScreen(
             }
 
             is ResultState.Error -> {
-
                 Text(
                     text = "Błąd: ${currentState.throwable.message}",
-                    modifier = Modifier.align(Alignment.Center)
+                    modifier = Modifier.align(Alignment.Center),
+                    color = ComposeColor.Red,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
 
+        // PANEL GÓRNY (Wyszukiwarka, Tytuł i Skaner QR)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .statusBarsPadding()
                 .align(Alignment.TopCenter)
         ) {
-
             Text(
                 text = "Hotel Navigator",
                 style = MaterialTheme.typography.headlineMedium.copy(
@@ -196,7 +207,6 @@ fun MainScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 OutlinedTextField(
                     value = searchQuery,
                     onValueChange = {
@@ -216,7 +226,6 @@ fun MainScreen(
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(12.dp),
                     singleLine = true,
-                    // Material 3 explicit container and indicator color overrides
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = ComposeColor.White.copy(alpha = 0.85f),
                         unfocusedContainerColor = ComposeColor.White.copy(alpha = 0.75f),
@@ -263,35 +272,33 @@ fun MainScreen(
                 }
             }
 
-            if (
-                isSuggestionsVisible &&
-                filteredSuggestions.isNotEmpty()
-            ) {
-
+            // LISTA PODPOWIEDZI WYSZUKIWANIA
+            if (isSuggestionsVisible && filteredSuggestions.isNotEmpty()) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = ComposeColor.White.copy(alpha = 0.95f)
+                    )
                 ) {
-
                     LazyColumn {
-
                         items(filteredSuggestions) { suggestion ->
-
                             Text(
                                 text = suggestion,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .clickable {
-
                                         searchQuery = suggestion
                                         isSuggestionsVisible = false
+                                        // Wywołanie przeliczenia ścieżki w ViewModelu
+                                        viewModel.onDestinationSelected(suggestion)
                                     }
-                                    .padding(16.dp)
+                                    .padding(16.dp),
+                                color = ComposeColor.Black
                             )
-
-                            HorizontalDivider()
+                            HorizontalDivider(color = ComposeColor.LightGray.copy(alpha = 0.5f))
                         }
                     }
                 }
