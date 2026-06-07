@@ -12,19 +12,14 @@ import pl.jb.nawigacjahotel.data.model.NavigationGraph
 import pl.jb.nawigacjahotel.data.model.findShortestPath
 import pl.jb.nawigacjahotel.data.remote.RetrofitInstance
 import java.io.IOException
-
+import pl.jb.nawigacjahotel.data.model.GraphNode
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private var navigationGraph: NavigationGraph? = null
 
     // Zaktualizowane mapowanie na rzeczywiste ID (Int) z pliku grafu
-    val destinationMap = mapOf(
-        "Recepcja" to 2,
-        "Biuro Zarządu" to 233,
-        "Pokój 304" to 304,
-        "Pokój 305" to 305,
-        "Pokój 315" to 315
-    )
+    private val _destinationMap = MutableStateFlow<Map<String, Int>>(emptyMap())
+    val destinationMap: StateFlow<Map<String, Int>> = _destinationMap
 
     companion object {
         private const val DEFAULT_LAT = 52.2207
@@ -54,15 +49,35 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val jsonString = getApplication<Application>().assets
                     .open("graf_nawigacyjny.json")
                     .bufferedReader().use { it.readText() }
+
                 val jsonConfig = Json {
                     ignoreUnknownKeys = true
                     isLenient = true
                 }
-                navigationGraph = jsonConfig.decodeFromString<NavigationGraph>(jsonString)
+
+                val graph = jsonConfig.decodeFromString<NavigationGraph>(jsonString)
+                navigationGraph = graph
+
+                _destinationMap.value = graph.nodes
+                    .filter { node ->
+                        node.poziom == 1 &&
+                                !node.nazwa.isNullOrBlank() &&
+                                node.coordinates.size >= 2
+                    }
+                    .distinctBy { it.nazwa }
+                    .sortedBy { it.nazwa }
+                    .associate { node ->
+                        node.nazwa!! to node.id
+                    }
+
             } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun getNodeById(id: Int): GraphNode? {
+        return navigationGraph?.nodes?.firstOrNull { it.id == id }
     }
 
     fun onQrScanned(result: String) {
@@ -129,7 +144,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
 
-        val endNodeId = destinationMap[destinationName] ?: return
+        val endNodeId = destinationMap.value[destinationName] ?: return
 
         viewModelScope.launch {
             val pathNodeIds = findShortestPath(graph, startNodeId, endNodeId)

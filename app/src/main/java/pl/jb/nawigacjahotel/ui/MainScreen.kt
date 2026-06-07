@@ -2,6 +2,7 @@ package pl.jb.nawigacjahotel.ui
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,7 +13,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color as ComposeColor
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -29,10 +32,14 @@ import com.arcgismaps.mapping.BasemapStyle
 import com.arcgismaps.mapping.Viewpoint
 import com.arcgismaps.mapping.layers.FeatureLayer
 import com.arcgismaps.mapping.symbology.CompositeSymbol
+import com.arcgismaps.mapping.symbology.HorizontalAlignment
+import com.arcgismaps.mapping.symbology.PictureMarkerSymbol
 import com.arcgismaps.mapping.symbology.SimpleLineSymbol
 import com.arcgismaps.mapping.symbology.SimpleLineSymbolStyle
 import com.arcgismaps.mapping.symbology.SimpleMarkerSymbol
 import com.arcgismaps.mapping.symbology.SimpleMarkerSymbolStyle
+import com.arcgismaps.mapping.symbology.TextSymbol
+import com.arcgismaps.mapping.symbology.VerticalAlignment
 import com.arcgismaps.mapping.view.Graphic
 import com.arcgismaps.mapping.view.GraphicsOverlay
 import com.arcgismaps.toolkit.geoviewcompose.MapView
@@ -41,13 +48,17 @@ import com.journeyapps.barcodescanner.ScanOptions
 
 import pl.jb.nawigacjahotel.R
 import pl.jb.nawigacjahotel.common.ResultState
-
+import android.graphics.BitmapFactory
+import androidx.core.graphics.drawable.toDrawable
 private const val ROOMS_LAYER_URL =
     "https://arcgis.cenagis.edu.pl/server/rest/services/SION2_Topo_MV/sion2_wms_topo_GG_f19/MapServer/5"
 
 fun createMap(lat: Double, lon: Double): ArcGISMap {
     val roomServiceTable = ServiceFeatureTable(ROOMS_LAYER_URL)
-    val featureLayerRooms = FeatureLayer.createWithFeatureTable(roomServiceTable)
+
+    val featureLayerRooms = FeatureLayer.createWithFeatureTable(roomServiceTable).apply {
+        labelsEnabled = false
+    }
 
     return ArcGISMap(BasemapStyle.ArcGISTopographic).apply {
         initialViewpoint = Viewpoint(
@@ -55,6 +66,7 @@ fun createMap(lat: Double, lon: Double): ArcGISMap {
             longitude = lon,
             scale = 2000.0
         )
+
         operationalLayers.add(featureLayerRooms)
     }
 }
@@ -66,14 +78,40 @@ fun MainScreen(
 ) {
     val state by viewModel.locationState.collectAsState()
 
+    val focusManager = LocalFocusManager.current
+
     var searchQuery by remember { mutableStateOf("") }
     var isSuggestionsVisible by remember { mutableStateOf(false) }
 
-    // Lista pobierana z kluczy mapy zdefiniowanej w ViewModelu
-    val allSuggestions = viewModel.destinationMap.keys.toList()
+    val destinationMap by viewModel.destinationMap.collectAsState()
 
-    val filteredSuggestions = allSuggestions.filter {
-        it.contains(searchQuery, true)
+    val appContext = androidx.compose.ui.platform.LocalContext.current
+
+    val destinationPinSymbol = remember {
+        val bitmap = BitmapFactory.decodeResource(
+            appContext.resources,
+            R.drawable.pin_destination
+        )
+
+        PictureMarkerSymbol.createWithImage(
+            bitmap.toDrawable(appContext.resources)
+        ).apply {
+            width = 40f
+            height = 40f
+
+            // Czubek pinezki ma wskazywać dokładny punkt docelowy.
+            offsetY = 16f
+        }
+    }
+
+    val allSuggestions = destinationMap.keys.toList()
+
+    val filteredSuggestions = if (searchQuery.isBlank()) {
+        allSuggestions
+    } else {
+        allSuggestions.filter {
+            it.contains(searchQuery, ignoreCase = true)
+        }
     }
 
     val barcodeLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
@@ -93,27 +131,77 @@ fun MainScreen(
             is ResultState.Success -> {
                 val navigationData = currentState.data
 
-                // Pamiętamy mapę dla danych współrzędnych
                 val map = remember(navigationData.lat, navigationData.lon) {
                     createMap(navigationData.lat, navigationData.lon)
                 }
 
-                // Generowanie nakładki graficznej (punkty i linie trasy)
+                val roomLabelsOverlay = remember(destinationMap) {
+                    GraphicsOverlay().apply {
+                        // Etykiety pojawiają się dopiero po odpowiednim przybliżeniu.
+                        // Większa wartość = pokażą się wcześniej.
+                        // Mniejsza wartość = trzeba mocniej przybliżyć.
+                        minScale = 1000.0
+
+                        destinationMap.forEach { (placeName, placeId) ->
+                            val placeNode = viewModel.getNodeById(placeId)
+
+                            if (placeNode != null && placeNode.coordinates.size >= 2) {
+                                val placePoint = Point(
+                                    placeNode.coordinates[0],
+                                    placeNode.coordinates[1],
+                                    SpatialReference.wgs84()
+                                )
+
+                                val labelText = if (placeName.startsWith("Pokój", ignoreCase = true)) {
+                                    placeName.removePrefix("Pokój").trim()
+                                } else {
+                                    placeName
+                                }
+
+                                val textSymbol = TextSymbol(
+                                    labelText,
+                                    Color.white,
+                                    15f,
+                                    HorizontalAlignment.Center,
+                                    VerticalAlignment.Middle
+                                ).apply {
+                                    haloColor = Color.fromRgba(0, 0, 0, 190)
+                                    haloWidth = 2.5f
+
+                                    // Jeśli Twoja wersja SDK tego nie obsługuje,
+                                    // usuń te dwie linie.
+                                    fontWeight = com.arcgismaps.mapping.symbology.FontWeight.Bold
+                                    fontFamily = "Sans Serif"
+                                }
+
+                                graphics.add(
+                                    Graphic(
+                                        geometry = placePoint,
+                                        symbol = textSymbol
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+
                 val graphicsOverlay = remember(navigationData) {
                     GraphicsOverlay().apply {
 
-                        // 1. RYSOWANIE KROPKI LOKALIZACJI UŻYTKOWNIKA (Z KODU QR)
+                        // 1. Punkt lokalizacji użytkownika po zeskanowaniu QR
                         if (navigationData.isUserPosition) {
-                            val userPoint = Point(navigationData.lon, navigationData.lat, SpatialReference.wgs84())
+                            val userPoint = Point(
+                                navigationData.lon,
+                                navigationData.lat,
+                                SpatialReference.wgs84()
+                            )
 
-                            // Efekt poświaty wokół kropki (Google Blue, 20% widoczności)
                             val outerHalo = SimpleMarkerSymbol(
                                 style = SimpleMarkerSymbolStyle.Circle,
                                 color = Color.fromRgba(26, 115, 232, 51),
                                 size = 24f
                             )
 
-                            // Wewnętrzny rdzeń z białą obwódką
                             val innerCore = SimpleMarkerSymbol(
                                 style = SimpleMarkerSymbolStyle.Circle,
                                 color = Color.fromRgba(26, 115, 232, 255),
@@ -126,39 +214,68 @@ fun MainScreen(
                                 )
                             }
 
-                            val compositeSymbol = CompositeSymbol(listOf(outerHalo, innerCore))
-                            graphics.add(Graphic(geometry = userPoint, symbol = compositeSymbol))
+                            val compositeSymbol = CompositeSymbol(
+                                listOf(
+                                    outerHalo,
+                                    innerCore
+                                )
+                            )
+
+                            graphics.add(
+                                Graphic(
+                                    geometry = userPoint,
+                                    symbol = compositeSymbol
+                                )
+                            )
                         }
 
-                        // 2. RYSOWANIE LINII TRASY (WYNIK DIJKSTRY)
+                        // 2. Trasa i punkt docelowy
                         if (navigationData.calculatedRoutePoints.isNotEmpty()) {
-                            // Konwersja par (Lat, Lon) na punkty ArcGIS
                             val routePoints = navigationData.calculatedRoutePoints.map { (lat, lon) ->
                                 Point(lon, lat, SpatialReference.wgs84())
                             }
 
-                            // Budowanie linii łamanej łączącej punkty
                             val polylineBuilder = PolylineBuilder(SpatialReference.wgs84()).apply {
                                 routePoints.forEach { addPoint(it) }
                             }
+
                             val routeGeometry = polylineBuilder.toGeometry()
 
-                            // Styl czerwonej linii nawigacyjnej
-                            val lineSymbol = SimpleLineSymbol(
+                            // Biała obwódka pod trasą — dzięki temu linia jest czytelna na podkładzie
+                            val routeOutlineSymbol = SimpleLineSymbol(
                                 style = SimpleLineSymbolStyle.Solid,
-                                color = Color.fromRgba(232, 26, 26, 255),
-                                width = 4f
+                                color = Color.fromRgba(255, 255, 255, 235),
+                                width = 9f
                             )
-                            graphics.add(Graphic(geometry = routeGeometry, symbol = lineSymbol))
 
-                            // Dodanie małego znacznika (X) na końcu trasy (celu podróży)
-                            routePoints.lastOrNull()?.let { endPoint ->
-                                val finishMarker = SimpleMarkerSymbol(
-                                    style = SimpleMarkerSymbolStyle.X,
-                                    color = Color.fromRgba(232, 26, 26, 255),
-                                    size = 14f
+                            // Główna linia trasy
+                            val routeMainSymbol = SimpleLineSymbol(
+                                style = SimpleLineSymbolStyle.Solid,
+                                color = Color.fromRgba(0, 122, 255, 255),
+                                width = 5.5f
+                            )
+
+                            graphics.add(
+                                Graphic(
+                                    geometry = routeGeometry,
+                                    symbol = routeOutlineSymbol
                                 )
-                                graphics.add(Graphic(geometry = endPoint, symbol = finishMarker))
+                            )
+
+                            graphics.add(
+                                Graphic(
+                                    geometry = routeGeometry,
+                                    symbol = routeMainSymbol
+                                )
+                            )
+
+                            routePoints.lastOrNull()?.let { endPoint ->
+                                graphics.add(
+                                    Graphic(
+                                        geometry = endPoint,
+                                        symbol = destinationPinSymbol
+                                    )
+                                )
                             }
                         }
                     }
@@ -167,7 +284,10 @@ fun MainScreen(
                 MapView(
                     modifier = Modifier.fillMaxSize(),
                     arcGISMap = map,
-                    graphicsOverlays = listOf(graphicsOverlay)
+                    graphicsOverlays = listOf(
+                        graphicsOverlay,
+                        roomLabelsOverlay
+                    )
                 )
             }
 
@@ -181,7 +301,22 @@ fun MainScreen(
             }
         }
 
-        // PANEL GÓRNY (Wyszukiwarka, Tytuł i Skaner QR)
+        // Przezroczysta warstwa do zamykania listy po kliknięciu poza panelem
+        if (isSuggestionsVisible) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) {
+                        isSuggestionsVisible = false
+                        focusManager.clearFocus()
+                    }
+            )
+        }
+
+        // Panel górny
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -211,10 +346,13 @@ fun MainScreen(
                     value = searchQuery,
                     onValueChange = {
                         searchQuery = it
-                        isSuggestionsVisible = it.isNotEmpty()
+                        isSuggestionsVisible = true
                     },
                     placeholder = {
-                        Text("Wyszukaj miejsce...", color = ComposeColor.Gray)
+                        Text(
+                            text = "Wyszukaj miejsce...",
+                            color = ComposeColor.Gray
+                        )
                     },
                     leadingIcon = {
                         Icon(
@@ -223,12 +361,23 @@ fun MainScreen(
                             tint = ComposeColor.Gray
                         )
                     },
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .onFocusChanged { focusState ->
+                            if (focusState.isFocused) {
+                                isSuggestionsVisible = true
+                            }
+                        },
                     shape = RoundedCornerShape(12.dp),
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = ComposeColor.White.copy(alpha = 0.85f),
                         unfocusedContainerColor = ComposeColor.White.copy(alpha = 0.75f),
+
+                        focusedTextColor = ComposeColor.Black,
+                        unfocusedTextColor = ComposeColor.Black,
+                        cursorColor = ComposeColor.Black,
+
                         focusedBorderColor = ComposeColor.Transparent,
                         unfocusedBorderColor = ComposeColor.Transparent
                     )
@@ -262,6 +411,7 @@ fun MainScreen(
                                 contentDescription = null,
                                 tint = ComposeColor.Black
                             )
+
                             Text(
                                 text = "QR",
                                 fontSize = 10.sp,
@@ -272,12 +422,13 @@ fun MainScreen(
                 }
             }
 
-            // LISTA PODPOWIEDZI WYSZUKIWANIA
+            // Lista podpowiedzi wyszukiwania
             if (isSuggestionsVisible && filteredSuggestions.isNotEmpty()) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                        .padding(horizontal = 16.dp)
+                        .heightIn(max = 260.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = ComposeColor.White.copy(alpha = 0.95f)
@@ -292,13 +443,16 @@ fun MainScreen(
                                     .clickable {
                                         searchQuery = suggestion
                                         isSuggestionsVisible = false
-                                        // Wywołanie przeliczenia ścieżki w ViewModelu
+                                        focusManager.clearFocus()
                                         viewModel.onDestinationSelected(suggestion)
                                     }
                                     .padding(16.dp),
                                 color = ComposeColor.Black
                             )
-                            HorizontalDivider(color = ComposeColor.LightGray.copy(alpha = 0.5f))
+
+                            HorizontalDivider(
+                                color = ComposeColor.LightGray.copy(alpha = 0.5f)
+                            )
                         }
                     }
                 }

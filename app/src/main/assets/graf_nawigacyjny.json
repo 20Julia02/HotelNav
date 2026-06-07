@@ -54,7 +54,7 @@
     },
     {
       "id": 147,
-      "nazwa": "Pokój siłowni",
+      "nazwa": "Siłownia",
       "poziom": 1,
       "qr_text": "yn6zb",
       "coordinates": [
@@ -86,7 +86,7 @@
     },
     {
       "id": 245,
-      "nazwa": "Pokój Biura",
+      "nazwa": "Biuro",
       "poziom": 1,
       "qr_text": "5AjMq",
       "coordinates": [
@@ -106,7 +106,7 @@
     },
     {
       "id": 246,
-      "nazwa": "Pokój Biura",
+      "nazwa": "Biuro",
       "poziom": 1,
       "qr_text": "yBHKe",
       "coordinates": [
@@ -126,7 +126,7 @@
     },
     {
       "id": 247,
-      "nazwa": "Pokój Biura",
+      "nazwa": "Biuro",
       "poziom": 1,
       "qr_text": "MGoji",
       "coordinates": [
@@ -146,7 +146,7 @@
     },
     {
       "id": 248,
-      "nazwa": "Pokój Biura",
+      "nazwa": "Biuro",
       "poziom": 1,
       "qr_text": "cC1rJ",
       "coordinates": [
