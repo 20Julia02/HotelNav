@@ -9,6 +9,8 @@ interface ApiService {
     @GET("query")
     suspend fun getLocation(
         @Query("where") where: String,
+        @Query("outFields") outFields: String = "*",
+        @Query("returnGeometry") returnGeometry: Boolean = true,
         @Query("f") f: String = "pjson"
     ): ApiResponse
 

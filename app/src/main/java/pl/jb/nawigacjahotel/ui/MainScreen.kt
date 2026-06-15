@@ -50,11 +50,24 @@ import pl.jb.nawigacjahotel.R
 import pl.jb.nawigacjahotel.common.ResultState
 import android.graphics.BitmapFactory
 import androidx.core.graphics.drawable.toDrawable
-private const val ROOMS_LAYER_URL =
-    "https://arcgis.cenagis.edu.pl/server/rest/services/SION2_Topo_MV/sion2_wms_topo_GG_f19/MapServer/5"
+import android.util.Log
 
-fun createMap(lat: Double, lon: Double): ArcGISMap {
-    val roomServiceTable = ServiceFeatureTable(ROOMS_LAYER_URL)
+private fun roomsLayerUrlForFloor(floor: Int): String {
+    val serviceName = when (floor) {
+        1 -> "sion2_wms_topo_GG_f19"
+        2 -> "sion2_wms_topo_GG_f2"
+        3 -> "sion2_wms_topo_GG_f36"
+        else -> "sion2_wms_topo_GG_f48"
+    }
+
+    return "https://arcgis.cenagis.edu.pl/server/rest/services/SION2_Topo_MV/$serviceName/MapServer/5"
+}
+
+fun createMap(lat: Double, lon: Double, floor: Int): ArcGISMap {
+    val roomsLayerUrl = roomsLayerUrlForFloor(floor)
+    val roomServiceTable = ServiceFeatureTable(roomsLayerUrl)
+
+    Log.d("MainScreen", "Tworzę mapę dla floor=$floor, layer=$roomsLayerUrl")
 
     val featureLayerRooms = FeatureLayer.createWithFeatureTable(roomServiceTable).apply {
         labelsEnabled = false
@@ -99,7 +112,6 @@ fun MainScreen(
             width = 40f
             height = 40f
 
-            // Czubek pinezki ma wskazywać dokładny punkt docelowy.
             offsetY = 16f
         }
     }
@@ -131,26 +143,34 @@ fun MainScreen(
             is ResultState.Success -> {
                 val navigationData = currentState.data
 
-                val map = remember(navigationData.lat, navigationData.lon) {
-                    createMap(navigationData.lat, navigationData.lon)
+                val map = remember(
+                    navigationData.lat,
+                    navigationData.lon,
+                    navigationData.currentFloor
+                ) {
+                    createMap(
+                        lat = navigationData.lat,
+                        lon = navigationData.lon,
+                        floor = navigationData.currentFloor
+                    )
                 }
 
-                val roomLabelsOverlay = remember(destinationMap) {
+                val roomLabelsOverlay = remember(destinationMap, navigationData.currentFloor) {
                     GraphicsOverlay().apply {
-                        // Etykiety pojawiają się dopiero po odpowiednim przybliżeniu.
-                        // Większa wartość = pokażą się wcześniej.
-                        // Mniejsza wartość = trzeba mocniej przybliżyć.
                         minScale = 1000.0
 
                         destinationMap.forEach { (placeName, placeId) ->
                             val placeNode = viewModel.getNodeById(placeId)
 
                             if (placeNode != null && placeNode.coordinates.size >= 2) {
-                                val placePoint = Point(
-                                    placeNode.coordinates[0],
-                                    placeNode.coordinates[1],
-                                    SpatialReference.wgs84()
-                                )
+                                val placeWgsPoint = viewModel.getNodeWgs84PointById(placeId)
+                                val placePoint = if (placeWgsPoint != null) {
+                                    Point(
+                                        placeWgsPoint.second,
+                                        placeWgsPoint.first,
+                                        SpatialReference.wgs84()
+                                    )
+                                } else null
 
                                 val labelText = if (placeName.startsWith("Pokój", ignoreCase = true)) {
                                     placeName.removePrefix("Pokój").trim()
@@ -174,12 +194,14 @@ fun MainScreen(
                                     fontFamily = "Sans Serif"
                                 }
 
-                                graphics.add(
-                                    Graphic(
-                                        geometry = placePoint,
-                                        symbol = textSymbol
+                                if (placePoint != null) {
+                                    graphics.add(
+                                        Graphic(
+                                            geometry = placePoint,
+                                            symbol = textSymbol
+                                        )
                                     )
-                                )
+                                }
                             }
                         }
                     }
@@ -281,6 +303,9 @@ fun MainScreen(
                     }
                 }
 
+                // NIE opakowujemy MapView w key(...).
+                // Wymuszone niszczenie i tworzenie natywnego MapView po skanie QR
+                // potrafi wywalić aplikację w Compose/ArcGIS.
                 MapView(
                     modifier = Modifier.fillMaxSize(),
                     arcGISMap = map,
@@ -332,6 +357,21 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp),
+                color = ComposeColor.Black
+            )
+
+            val visibleFloor = when (val currentState = state) {
+                is ResultState.Success -> currentState.data.currentFloor
+                else -> 1
+            }
+
+            Text(
+                text = "Aktualne piętro: $visibleFloor",
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontWeight = FontWeight.SemiBold
+                ),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
                 color = ComposeColor.Black
             )
 
